@@ -169,18 +169,61 @@ body { font-family: 'Roboto', sans-serif; color: var(--text-dark); line-height: 
 .s-card h4 { color: var(--brand-purple); margin-bottom: 10px; font-size: 1.2rem; }
 .btn-purple-box { background: var(--brand-purple); color: #fff; border: none; padding: 14px 28px; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: opacity 0.3s; }
 .btn-purple-box:hover { opacity: 0.9; }
+/* --- AFTER SALES SUPPORT SECTION --- */
+
+.partner-row { 
+    display: flex; 
+    gap: 60px; 
+    align-items: center; 
+    margin: 80px 0;
+    padding: 0 5%;
+}
+
+/* This creates the 'reverse' look for the After Sales section */
+.partner-row.reverse { 
+    flex-direction: row-reverse; 
+}
+
+.partner-img-box { 
+    flex: 1; 
+}
+
 .partner-img-box img { 
     width: 100%; 
-    height: 400px; /* Or your preferred height */
-    object-fit: cover; /* This is critical for professional headshots */
-    border-radius: 8px;
+    height: 450px; /* Fixed height for a professional look */
+    object-fit: cover; /* Prevents Misgan.png from stretching */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     display: block;
 }
 
-/* --- RESPONSIVE --- */
-@media (max-width: 900px) {
-    .split-screen, .checker-row, .checker-row.reverse, .services-grid, .partner-row, .partner-row.reverse { 
-        display: flex; flex-direction: column; height: auto; 
+.partner-content { 
+    flex: 1; 
+}
+
+.partner-content h3 { 
+    font-size: 2.2rem;
+    color: #2d2d2d;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.partner-content p { 
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* Mobile Responsive Fix */
+@media (max-width: 992px) {
+    .partner-row, .partner-row.reverse { 
+        flex-direction: column; 
+        gap: 30px;
+        text-align: center;
     }
-    .checker-image img, .partner-img-box img { height: 300px; }
+    
+    .partner-img-box img {
+        height: 300px;
+    }
 }
