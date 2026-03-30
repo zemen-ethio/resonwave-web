@@ -5,8 +5,23 @@
     --text-gray: #666;
 }
 
+/* --- RESET & GLOBAL INDENT --- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Roboto', sans-serif; color: var(--text-dark); line-height: 1.5; background: #fff; }
+
+body { 
+    font-family: 'Roboto', sans-serif; 
+    color: var(--text-dark); 
+    line-height: 1.5; 
+    background: #fff; 
+    overflow-x: hidden;
+}
+
+/* This applies the left indentation to your entire content flow */
+section, .container, .checker-row, .partner-row, .services-grid {
+    padding-left: 8%;
+    padding-right: 5%;
+    max-width: 100%;
+}
 
 /* --- HEADER --- */
 .exact-header { text-align: center; padding: 35px 0; background: #fff; border-bottom: 1px solid #f0f0f0; }
@@ -15,40 +30,12 @@ body { font-family: 'Roboto', sans-serif; color: var(--text-dark); line-height: 
 .exact-nav a { text-decoration: none; color: var(--text-gray); font-size: 0.85rem; padding: 6px 14px; font-weight: 500; }
 .exact-nav a.active { background: var(--brand-purple); color: #fff; border-radius: 4px; }
 
-/* --- INFINITE ENGINE --- */
+/* --- STATIC LAYOUT (Motion Removed) --- */
+.infinite-wrapper { width: 100%; overflow: visible; }
+.infinite-scroll { display: block; width: 100%; animation: none; }
+.scroll-item { width: 100%; display: block; margin-bottom: 0; }
 
-/* --- STATIC LAYOUT (Loop Stopped) --- */
-.infinite-wrapper { 
-    width: 100%; 
-    overflow: visible; /* Allows the page to scroll up and down normally */
-}
-
-.infinite-scroll { 
-    display: block; /* Changes from side-by-side to top-to-bottom */
-    width: 100%; 
-    animation: none; /* Physically removes the motion */
-}
-
-.scroll-item { 
-    width: 100%; 
-    display: block; 
-    margin-bottom: 0; /* Keeps sections tight together */
-}
-
-/* You can delete the @keyframes scroll-left entirely as it is no longer needed */
-
-/*.infinite-wrapper { width: 100%; overflow: hidden; }
-.infinite-scroll { display: flex; width: max-content; animation: scroll-left 20s linear infinite; }
-.scroll-item { flex: 0 0 100vw; display: flex; flex-direction: column; }
-@keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } } ---*/
-
-/* This will stop the motion immediately when your mouse is over the section */
-
-/*.infinite-wrapper:hover .infinite-scroll { 
-    animation-direction: reverse; }---*/
-
-/*.infinite-wrapper:hover .infinite-scroll { animation-play-state: paused; }---*/
-/* --- SPLIT HOME (Screenshot 1) --- */
+/* --- SPLIT HOME --- */
 .split-screen { 
     display: grid; 
     grid-template-columns: 1fr 1fr; 
@@ -63,13 +50,11 @@ body { font-family: 'Roboto', sans-serif; color: var(--text-dark); line-height: 
     padding: 40px; 
 }
 
-/* Updated logo styling for Resonwave Logo.webp */
 .rw-logo-img { 
     max-width: 280px; 
     width: 80%;
     height: auto;
     display: block;
-    margin: 0 auto;
 }
 
 .contact-box { 
@@ -81,149 +66,71 @@ body { font-family: 'Roboto', sans-serif; color: var(--text-dark); line-height: 
     justify-content: center; 
 }
 
-.box-label { 
-    font-size: 0.9rem; 
-    margin-top: 25px; 
-    margin-bottom: 5px; 
-    font-weight: 600; 
-    text-transform: uppercase; 
-    letter-spacing: 0.5px; 
-}
+.box-label { font-size: 0.9rem; margin-top: 25px; font-weight: 600; text-transform: uppercase; }
+.contact-box p { margin-bottom: 5px; font-size: 1rem; opacity: 0.95; }
+.contact-box a { color: #fff; text-decoration: underline; }
 
-.contact-box p { 
-    margin-bottom: 5px; 
-    font-size: 1rem; 
-    opacity: 0.95; 
-}
-
-.contact-box a { 
-    color: #fff; 
-    text-decoration: underline; 
-}
-
-.social-circle { 
-    background: #fff; 
-    color: var(--brand-purple); 
-    width: 35px; 
-    height: 35px; 
-    border-radius: 50%; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    margin-top: 15px; 
-    font-size: 1.1rem; 
-}
-/* --- CHECKERBOARD (Screenshot 2) --- */
+/* --- CHECKERBOARD (About Us) --- */
 .checker-row { 
     display: flex; 
     gap: 50px; 
     align-items: center; 
-    margin-bottom: 60px; 
+    margin: 80px 0; /* Added spacing between rows */
 }
 
-.checker-row.reverse { 
-    flex-direction: row-reverse; 
-}
-
-.checker-image { 
-    flex: 1.2; 
-}
+.checker-row.reverse { flex-direction: row-reverse; }
+.checker-image { flex: 1.2; }
 
 .checker-image img { 
     width: 100%; 
-    border-radius: 4px; 
+    border-radius: 12px; 
     display: block; 
-    height: 380px; 
-    object-fit: cover; /* This keeps your webp images from stretching */
+    height: 400px; 
+    object-fit: cover; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
-.checker-text { 
-    flex: 1; 
-}
+.checker-text { flex: 1; }
+.checker-text h3 { color: var(--brand-purple); margin-bottom: 15px; font-size: 1.8rem; line-height: 1.3; }
+.sub-label { color: var(--brand-purple); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 10px; }
 
-.checker-text h3 { 
-    color: var(--brand-purple); 
-    margin-bottom: 15px; 
-    font-size: 1.5rem; 
-    line-height: 1.3; 
-}
-
-.sub-label { 
-    color: var(--brand-purple); 
-    font-weight: 700; 
-    font-size: 0.8rem; 
-    text-transform: uppercase; 
-    display: block; 
-    margin-bottom: 10px; 
-}
-
-/* --- SERVICES (Screenshot 3) --- */
-.hero-blue-banner { background: var(--brand-purple); color: #fff; text-align: center; padding: 100px 20px; }
+/* --- SERVICES GRID --- */
+.hero-blue-banner { background: var(--brand-purple); color: #fff; text-align: center; padding: 80px 20px; margin-left: -8.7%; width: 110%; } /* Banner spans full width */
 .hero-blue-banner h1 { font-size: 2.5rem; margin-bottom: 20px; }
-.hero-blue-banner p { max-width: 700px; margin: 0 auto 30px; font-size: 1.1rem; }
-.btn-white-box { background: #fff; color: var(--brand-purple); border: none; padding: 12px 28px; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 1rem; }
-.gray-subtext { color: var(--text-gray); max-width: 750px; margin: 0 auto 50px; }
-.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin: 50px 0; }
-.s-card { text-align: left; }
-.s-card img { width: 100%; border-radius: 4px; margin-bottom: 15px; height: 200px; object-fit: cover; }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin: 60px 0; }
+.s-card img { width: 100%; border-radius: 8px; margin-bottom: 15px; height: 220px; object-fit: cover; }
 .s-card h4 { color: var(--brand-purple); margin-bottom: 10px; font-size: 1.2rem; }
-.btn-purple-box { background: var(--brand-purple); color: #fff; border: none; padding: 14px 28px; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: opacity 0.3s; }
-.btn-purple-box:hover { opacity: 0.9; }
-/* --- AFTER SALES SUPPORT SECTION --- */
 
+/* --- AFTER SALES SUPPORT (Misgan.png) --- */
 .partner-row { 
     display: flex; 
     gap: 60px; 
     align-items: center; 
-    margin: 80px 0;
-    padding: 0 5%;
+    margin: 100px 0;
 }
 
-/* This creates the 'reverse' look for the After Sales section */
-.partner-row.reverse { 
-    flex-direction: row-reverse; 
-}
-
-.partner-img-box { 
-    flex: 1; 
-}
+.partner-row.reverse { flex-direction: row-reverse; }
+.partner-img-box { flex: 1; }
 
 .partner-img-box img { 
     width: 100%; 
-    height: 450px; /* Fixed height for a professional look */
-    object-fit: cover; /* Prevents Misgan.png from stretching */
+    height: 450px; 
+    object-fit: cover; 
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     display: block;
 }
 
-.partner-content { 
-    flex: 1; 
-}
+.partner-content { flex: 1; }
+.partner-content h3 { font-size: 2.2rem; color: #2d2d2d; margin-bottom: 20px; line-height: 1.2; }
+.partner-content p { font-size: 1.1rem; line-height: 1.7; color: #555; margin-bottom: 30px; }
 
-.partner-content h3 { 
-    font-size: 2.2rem;
-    color: #2d2d2d;
-    margin-bottom: 20px;
-    line-height: 1.2;
-}
+.btn-purple-box { background: var(--brand-purple); color: #fff; border: none; padding: 14px 28px; border-radius: 4px; cursor: pointer; font-weight: 600; }
 
-.partner-content p { 
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: #555;
-    margin-bottom: 30px;
-}
-
-/* Mobile Responsive Fix */
+/* --- MOBILE RESPONSIVE --- */
 @media (max-width: 992px) {
-    .partner-row, .partner-row.reverse { 
-        flex-direction: column; 
-        gap: 30px;
-        text-align: center;
-    }
-    
-    .partner-img-box img {
-        height: 300px;
-    }
+    section, .checker-row, .partner-row, .services-grid { padding-left: 5%; padding-right: 5%; }
+    .split-screen, .checker-row, .partner-row, .services-grid { grid-template-columns: 1fr; flex-direction: column; text-align: center; }
+    .checker-row.reverse, .partner-row.reverse { flex-direction: column; }
+    .checker-image img, .partner-img-box img { height: 300px; }
 }
