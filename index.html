@@ -133,44 +133,42 @@
         <!-- <button class="btn-purple-box">Book a consultation</button> -->
 
  <section id="consultation-form" class="form-container">
-    <div class="form-container" id="consultation-form">
+  <div class="form-container" id="support-form">
     <div class="form-box">
-        <h3>Book a Consultation</h3>
-        <p>Send a message to <strong>nbelay10@gmail.com</strong> via the form below.</p>
+        <h3>Technical Support Request</h3>
+        <p>Your request will be sent to our engineering team for review.</p>
         
-        <form action="https://formbold.com/s/3nqOz" method="POST">
-            
-            <input type="hidden" name="_next" value="https://www.resonwave.com/thank-you.html">
-
+        <form id="support-form-element">
             <div class="form-row">
                 <div class="form-group">
                     <label>First Name</label>
-                    <input type="text" name="first_name" placeholder="First Name" required>
+                    <input type="text" name="first_name" id="f_name" required>
                 </div>
                 <div class="form-group">
                     <label>Last Name</label>
-                    <input type="text" name="last_name" placeholder="Last Name" required>
+                    <input type="text" name="last_name" id="l_name" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label>Your Email</label>
-                <input type="email" name="email" placeholder="yourname@example.com" required>
+                <input type="email" name="email" id="email_addr" required>
             </div>
 
             <div class="form-group">
                 <label>Phone Number</label>
-                <input type="tel" name="phone" placeholder="+971 -- --- ----" required>
+                <input type="tel" name="phone" id="phone_num" required>
             </div>
 
             <div class="form-group">
                 <label>Message (Max 1500 chars)</label>
-                <textarea name="message" maxlength="1500" placeholder="How can Resonwave help your business?" required></textarea>
+                <textarea name="message" id="msg_body" maxlength="1500" required></textarea>
             </div>
 
-            <button type="submit" class="btn-purple-box">Submit Request</button>
+            <button type="submit" class="btn-purple-box" id="submit-btn">Submit Ticket</button>
+            <p id="status-msg" style="margin-top: 10px; display: none; color: var(--brand-purple); font-weight: 600;">Sending...</p>
         </form>
-        </div>
+    </div>
 </div>
 </section>
         
@@ -186,5 +184,36 @@
         </div>
     </div>
 
+    
+<script>
+    const form = document.getElementById("support-form-element");
+    const status = document.getElementById("status-msg");
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault(); // Stop the default Formspree redirect
+        status.style.display = "block";
+        
+        const data = new FormData(form);
+        
+        fetch("https://formspree.io/f/xvzvaadq", {
+            method: "POST",
+            body: data,
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                // REDIRECT TO YOUR DOMAIN UPON SUCCESS
+                window.location.href = "https://www.resonwave.com/thank-you.html";
+            } else {
+                status.innerHTML = "Oops! There was a problem. Please try again.";
+            }
+        }).catch(error => {
+            status.innerHTML = "Connection error. Please check your internet.";
+        });
+    });
+</script>
+
+    
 </body>
 </html>
