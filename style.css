@@ -21,16 +21,71 @@ body { font-family: 'Roboto', sans-serif; color: var(--text-dark); line-height: 
 .scroll-item { flex: 0 0 100vw; display: flex; flex-direction: column; }
 @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 .infinite-wrapper:hover .infinite-scroll { animation-play-state: paused; }
-
 /* --- SPLIT HOME (Screenshot 1) --- */
-.split-screen { display: grid; grid-template-columns: 1fr 1fr; min-height: 550px; }
-.logo-box { background: var(--logo-blue); display: flex; justify-content: center; align-items: center; padding: 40px; }
-.rw-logo-img { width: 70%; max-width: 400px; }
-.contact-box { background: var(--brand-purple); color: #fff; padding: 60px; display: flex; flex-direction: column; justify-content: center; }
-.box-label { font-size: 0.9rem; margin-top: 25px; margin-bottom: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-.contact-box p { margin-bottom: 5px; font-size: 1rem; opacity: 0.95; }
-.contact-box a { color: #fff; text-decoration: underline; }
-.social-circle { background: #fff; color: var(--brand-purple); width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-top: 15px; font-size: 1.1rem; }
+.split-screen { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    min-height: 550px; 
+}
+
+.logo-box { 
+    background: var(--logo-blue); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 40px; 
+}
+
+/* Updated logo styling for Resonwave Logo.webp */
+.rw-logo-img { 
+    max-width: 280px; 
+    width: 80%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.contact-box { 
+    background: var(--brand-purple); 
+    color: #fff; 
+    padding: 60px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+}
+
+.box-label { 
+    font-size: 0.9rem; 
+    margin-top: 25px; 
+    margin-bottom: 5px; 
+    font-weight: 600; 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px; 
+}
+
+.contact-box p { 
+    margin-bottom: 5px; 
+    font-size: 1rem; 
+    opacity: 0.95; 
+}
+
+.contact-box a { 
+    color: #fff; 
+    text-decoration: underline; 
+}
+
+.social-circle { 
+    background: #fff; 
+    color: var(--brand-purple); 
+    width: 35px; 
+    height: 35px; 
+    border-radius: 50%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 15px; 
+    font-size: 1.1rem; 
+}
 
 /* --- CHECKERBOARD (Screenshot 2) --- */
 .section { padding: 90px 0; }
