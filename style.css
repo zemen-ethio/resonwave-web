@@ -56,15 +56,23 @@ section, .container, .checker-row, .partner-row, .services-grid {
     height: auto;
     display: block;
 }
-
 .contact-box { 
+    background: var(--brand-purple); 
+    color: #fff; 
+    padding: 50px 60px; /* Gives more room for the hours and location */
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-start; 
+    min-height: 600px; /* Ensures the box is tall enough for all info */
+}
+/*.contact-box { 
     background: var(--brand-purple); 
     color: #fff; 
     padding: 60px; 
     display: flex; 
     flex-direction: column; 
     justify-content: center; 
-}
+}---*/
 
 .box-label { font-size: 0.9rem; margin-top: 25px; font-weight: 600; text-transform: uppercase; }
 .contact-box p { margin-bottom: 5px; font-size: 1rem; opacity: 0.95; }
