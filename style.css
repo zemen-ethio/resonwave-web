@@ -144,13 +144,13 @@ body { font-family: 'Roboto', sans-serif; color: var(--text-dark); line-height: 
 .s-card h4 { color: var(--brand-purple); margin-bottom: 10px; font-size: 1.2rem; }
 .btn-purple-box { background: var(--brand-purple); color: #fff; border: none; padding: 14px 28px; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: opacity 0.3s; }
 .btn-purple-box:hover { opacity: 0.9; }
-
-.partner-row { display: flex; gap: 50px; align-items: center; margin-top: 60px; }
-.partner-row.reverse { flex-direction: row-reverse; }
-.partner-img-box { flex: 1; }
-.partner-img-box img { width: 100%; border-radius: 4px; height: 350px; object-fit: cover; }
-.partner-content { flex: 1.3; }
-.partner-content h3 { color: var(--brand-purple); font-size: 1.6rem; margin-bottom: 15px; }
+.partner-img-box img { 
+    width: 100%; 
+    height: 400px; /* Or your preferred height */
+    object-fit: cover; /* This is critical for professional headshots */
+    border-radius: 8px;
+    display: block;
+}
 
 /* --- RESPONSIVE --- */
 @media (max-width: 900px) {
