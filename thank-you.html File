@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | Resonwave Technology</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Specific styling for the success message layout */
+        .thank-you-wrapper {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #fff;
+        }
+
+        .thank-you-content {
+            max-width: 600px;
+        }
+
+        .thank-you-content h1 {
+            color: var(--brand-purple);
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .thank-you-content p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .back-home-btn {
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .back-home-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Responsive adjustments for Dubai mobile users */
+        @media (max-width: 768px) {
+            .thank-you-content h1 { font-size: 2.2rem; }
+            .thank-you-content p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="thank-you-wrapper">
+        <div class="thank-you-content">
+            <span class="sub-label">Submission Successful</span>
+            <h1>Thank You.</h1>
+            <p>
+                Your message has been received by our engineering team. 
+                We will review your inquiry and get back to you at 
+                <strong>nbelay10@gmail.com</strong> shortly.
+            </p>
+            
+            <a href="index.html" class="back-home-btn btn-purple-box">
+                Return to Homepage
+            </a>
+        </div>
+    </section>
+
+</body>
+</html>
