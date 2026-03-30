@@ -17,7 +17,7 @@ body { font-family: 'Roboto', sans-serif; color: var(--text-dark); line-height: 
 
 /* --- INFINITE ENGINE --- */
 .infinite-wrapper { width: 100%; overflow: hidden; }
-.infinite-scroll { display: flex; width: max-content; animation: scroll-left 200s linear infinite; }
+.infinite-scroll { display: flex; width: max-content; animation: scroll-left 60s linear infinite; }
 .scroll-item { flex: 0 0 100vw; display: flex; flex-direction: column; }
 @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 .infinite-wrapper:hover .infinite-scroll { animation-play-state: paused; }
