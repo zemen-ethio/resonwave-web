@@ -1,0 +1,47 @@
+# --- SENSITIVE DATA ---
+# Never upload your secret environment variables
+.env
+.env.local
+.env.*.local
+# Ignore files where you might store private API keys locally
+secrets.json
+api-keys.js
+
+# --- DEPENDENCIES ---
+# If you ever use npm/yarn in the future
+node_modules/
+jspm_packages/
+
+# --- OPERATING SYSTEM FILES ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# --- EDITOR / IDE SETTINGS ---
+# Settings from VS Code, Sublime, or Atom
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# --- BUILD & TEMPORARY FILES ---
+# If you use a build tool like Vite or Parcel later
+dist/
+build/
+.cache/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- PERSONAL / DESIGN ASSETS ---
+# Keep your large design drafts out of the repo
+*.psd
+*.ai
+notes.txt
+todo.md
