@@ -1,236 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>ResonWave • Live IT Careers</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --bg: #0A0C10;
-      --surface: #1A1E26;
-      --surface-hover: #252B36;
-      --primary: #4F46E5;
-      --primary-light: #7C3AED;
-      --text: #F1F5F9;
-      --text-dim: #94A3B8;
-      --border: #2D3748;
-    }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      line-height: 1.5;
-      padding: 2rem 1rem;
-    }
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 3rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #fff, var(--primary-light));
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-    .badge {
-      background: var(--surface);
-      padding: 0.4rem 1rem;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 500;
-    }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.02em;
-    }
-    .desc {
-      color: var(--text-dim);
-      margin-bottom: 2rem;
-    }
-    .stats-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      padding: 1rem;
-      background: var(--surface);
-      border-radius: 1rem;
-    }
-    .last-updated {
-      font-size: 0.875rem;
-      color: var(--text-dim);
-    }
-    .job-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .job-card {
-      background: var(--surface);
-      border-radius: 1rem;
-      padding: 1.25rem 1.5rem;
-      transition: all 0.2s ease;
-      border: 1px solid transparent;
-    }
-    .job-card:hover {
-      background: var(--surface-hover);
-      border-color: var(--primary);
-      transform: translateX(4px);
-    }
-    .job-title {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-    .job-title a {
-      color: var(--text);
-      text-decoration: none;
-    }
-    .job-title a:hover {
-      color: var(--primary-light);
-    }
-    .job-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem 1.5rem;
-      font-size: 0.85rem;
-      color: var(--text-dim);
-    }
-    .job-meta span {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-    .job-source {
-      background: rgba(79, 70, 229, 0.15);
-      padding: 0.2rem 0.5rem;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: var(--primary-light);
-    }
-    .error-box, .loading-box {
-      text-align: center;
-      padding: 3rem;
-      background: var(--surface);
-      border-radius: 1rem;
-    }
-    .footer {
-      margin-top: 3rem;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      border-top: 1px solid var(--border);
-      padding-top: 2rem;
-    }
-    @media (max-width: 640px) {
-      body { padding: 1rem; }
-      .job-card { padding: 1rem; }
-      .job-title { font-size: 1rem; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Careers | Resonwave Technology</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles for job board – keeps brand consistency */
+        .career-hero {
+            background: var(--brand-purple);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 60px;
+        }
+        .career-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .career-hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        .job-stats {
+            background: #f5f5f5;
+            border-radius: 12px;
+            padding: 15px 25px;
+            margin: 30px 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+        .job-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+        .job-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            transition: all 0.2s ease;
+        }
+        .job-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(109, 109, 246, 0.1);
+            border-color: var(--brand-purple);
+        }
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .job-title a {
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+        .job-title a:hover {
+            color: var(--brand-purple);
+        }
+        .job-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+        .job-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .job-source {
+            background: rgba(109, 109, 246, 0.1);
+            padding: 2px 10px;
+            border-radius: 30px;
+            font-weight: 500;
+            color: var(--brand-purple);
+        }
+        .loading-box, .error-box {
+            background: #f9f9f9;
+            text-align: center;
+            padding: 60px 20px;
+            border-radius: 16px;
+            color: var(--text-gray);
+        }
+        .refresh-note {
+            text-align: right;
+            font-size: 0.75rem;
+            color: #aaa;
+            margin-top: 10px;
+        }
+        @media (max-width: 768px) {
+            .career-hero { padding: 50px 20px; }
+            .job-card { padding: 1.2rem; }
+            .job-title { font-size: 1.1rem; }
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <div class="logo">reson<span style="color: var(--primary-light);">wave</span></div>
-    <div class="badge">⚡ LIVE CAREER FEED</div>
-  </header>
 
-  <h1>🚀 IT opportunities · worldwide & remote</h1>
-  <div class="desc">
-    Curated openings for <strong>IT Support, System Engineer, Helpdesk, Manager, Supervisor, Specialist, Assistant Manager</strong> and more.
-  </div>
+    <!-- ========== EXACT SAME HEADER AS MAIN SITE ========== -->
+    <header class="exact-header">
+        <h1 class="exact-logo-text">Resonwave Technology</h1>
+        <nav class="exact-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About Us</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="career.html" class="active">Careers</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <div class="stats-bar">
-    <div class="live-indicator">🔵 live data · updated every 6h</div>
-    <div class="last-updated" id="lastUpdate">loading timestamp...</div>
-  </div>
+    <!-- ========== CAREER HERO SECTION ========== -->
+    <div class="career-hero">
+        <h1>🚀 Join the Resonwave Team</h1>
+        <p>Live IT opportunities – remote & worldwide. We're always looking for talented engineers, support specialists, and IT leaders.</p>
+    </div>
 
-  <div id="jobContainer" class="job-grid">
-    <div class="loading-box">📡 pulling latest listings from global sources…</div>
-  </div>
+    <div class="container" style="padding-left: 8%; padding-right: 8%; max-width: 1400px; margin: 0 auto;">
+        <div class="job-stats">
+            <div><i class="fas fa-bolt" style="color: var(--brand-purple);"></i> Live feed · updates every 6h</div>
+            <div class="last-updated" id="lastUpdate">loading timestamp...</div>
+        </div>
 
-  <div class="footer">
-    © ResonWave — automated job watch • data from Himalayas, Remotive, Adzuna
-  </div>
-</div>
+        <div id="jobContainer" class="job-grid">
+            <div class="loading-box"><i class="fas fa-spinner fa-pulse"></i> Pulling latest IT listings...</div>
+        </div>
+        <div class="refresh-note">
+            <i class="fas fa-database"></i> Data aggregated from Himalayas, Remotive, Adzuna
+        </div>
+    </div>
 
-<script>
-  const WORKER_URL = 'https://resonwave-job-hub.your-subdomain.workers.dev';  // <-- UPDATE!
+    <!-- ========== SIMPLE FOOTER (matches main site style) ========== -->
+    <footer style="background: #f5f5f5; padding: 30px 8%; text-align: center; margin-top: 60px; color: #777; font-size: 0.8rem;">
+        © 2026 Resonwave Technology – IT solutions in Dubai & remote career hub
+    </footer>
 
-  async function loadJobs() {
-    const container = document.getElementById('jobContainer');
-    const timestampSpan = document.getElementById('lastUpdate');
-    try {
-      container.innerHTML = `<div class="loading-box">🔄 refreshing live feed …</div>`;
-      const response = await fetch(WORKER_URL + '?t=' + Date.now());
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const data = await response.json();
-      if (!data.jobs || data.jobs.length === 0) {
-        container.innerHTML = `<div class="error-box">✨ No matching IT roles at this moment. Check again later.</div>`;
-        timestampSpan.innerText = `${new Date().toLocaleTimeString()} · no jobs`;
-        return;
-      }
-      renderJobs(data.jobs);
-      timestampSpan.innerText = `last sync: ${new Date().toLocaleTimeString()} · ${data.jobs.length} roles`;
-    } catch (err) {
-      console.error(err);
-      container.innerHTML = `<div class="error-box">⚠️ Could not fetch career feed. Please try again later.</div>`;
-      timestampSpan.innerText = `failed · ${new Date().toLocaleTimeString()}`;
-    }
-  }
+    <script>
+        // =====================================================
+        // REPLACE THIS URL WITH YOUR ACTUAL CLOUDFLARE WORKER
+        // =====================================================
+        const WORKER_URL = 'https://resonwave-job-hub.your-subdomain.workers.dev';  // <--- UPDATE THIS
 
-  function renderJobs(jobs) {
-    const container = document.getElementById('jobContainer');
-    let html = '';
-    for (const job of jobs) {
-      const posted = job.posted_date ? new Date(job.posted_date).toLocaleDateString() : 'recent';
-      html += `
-        <div class="job-card">
-          <div class="job-title">
-            <a href="${escapeHtml(job.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(job.title)}</a>
-          </div>
-          <div class="job-meta">
-            <span>🏢 ${escapeHtml(job.company)}</span>
-            <span>📍 ${escapeHtml(job.location || 'Remote')}</span>
-            <span>📅 ${posted}</span>
-            <span class="job-source">📡 ${escapeHtml(job.source)}</span>
-          </div>
-        </div>`;
-    }
-    container.innerHTML = html;
-  }
+        async function loadJobs() {
+            const container = document.getElementById('jobContainer');
+            const timestampSpan = document.getElementById('lastUpdate');
+            try {
+                container.innerHTML = `<div class="loading-box"><i class="fas fa-sync-alt fa-spin"></i> Refreshing live feed ...</div>`;
+                const response = await fetch(WORKER_URL + '?t=' + Date.now());
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                if (!data.jobs || data.jobs.length === 0) {
+                    container.innerHTML = `<div class="error-box">✨ No matching IT roles at this moment. Check again later.</div>`;
+                    timestampSpan.innerText = `${new Date().toLocaleTimeString()} · no jobs`;
+                    return;
+                }
+                renderJobs(data.jobs);
+                timestampSpan.innerText = `last sync: ${new Date().toLocaleTimeString()} · ${data.jobs.length} roles`;
+            } catch (err) {
+                console.error(err);
+                container.innerHTML = `<div class="error-box">⚠️ Could not fetch career feed. Please refresh or try again later.</div>`;
+                timestampSpan.innerText = `failed · ${new Date().toLocaleTimeString()}`;
+            }
+        }
 
-  function escapeHtml(str) {
-    if (!str) return '';
-    return str.replace(/[&<>]/g, function(m) {
-      if (m === '&') return '&amp;';
-      if (m === '<') return '&lt;';
-      if (m === '>') return '&gt;';
-      return m;
-    });
-  }
+        function renderJobs(jobs) {
+            const container = document.getElementById('jobContainer');
+            let html = '';
+            for (const job of jobs) {
+                const posted = job.posted_date ? new Date(job.posted_date).toLocaleDateString() : 'recent';
+                html += `
+                    <div class="job-card">
+                        <div class="job-title">
+                            <a href="${escapeHtml(job.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(job.title)}</a>
+                        </div>
+                        <div class="job-meta">
+                            <span><i class="fas fa-building"></i> ${escapeHtml(job.company)}</span>
+                            <span><i class="fas fa-map-marker-alt"></i> ${escapeHtml(job.location || 'Remote')}</span>
+                            <span><i class="far fa-calendar-alt"></i> ${posted}</span>
+                            <span class="job-source"><i class="fas fa-globe"></i> ${escapeHtml(job.source)}</span>
+                        </div>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
 
-  loadJobs();
-  setInterval(loadJobs, 15 * 60 * 1000);
-</script>
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        // Initial load + refresh every 15 minutes
+        loadJobs();
+        setInterval(loadJobs, 15 * 60 * 1000);
+    </script>
 </body>
 </html>
