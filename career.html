@@ -149,27 +149,34 @@
         © 2026 Resonwave Technology – IT solutions in Dubai & remote career hub
     </footer>
 
-    <script>
-        // =====================================================
-        // REPLACE THIS URL WITH YOUR ACTUAL CLOUDFLARE WORKER
-        // =====================================================
-        const WORKER_URL = 'https://resonwave-job-hub.your-subdomain.workers.dev';  // <--- UPDATE THIS
-
+ <script>
+        // No WORKER_URL variable needed! We use the relative path /career/data
+        
         async function loadJobs() {
             const container = document.getElementById('jobContainer');
             const timestampSpan = document.getElementById('lastUpdate');
+            
             try {
                 container.innerHTML = `<div class="loading-box"><i class="fas fa-sync-alt fa-spin"></i> Refreshing live feed ...</div>`;
-                const response = await fetch(WORKER_URL + '?t=' + Date.now());
+                
+                // Fetch from the local endpoint on your domain
+                const response = await fetch('/career/data?t=' + Date.now());
+                
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                
                 const data = await response.json();
-                if (!data.jobs || data.jobs.length === 0) {
+                
+                // Flexible check for both [array] or { jobs: [array] } formats
+                const jobs = Array.isArray(data) ? data : (data.jobs || []);
+
+                if (jobs.length === 0) {
                     container.innerHTML = `<div class="error-box">✨ No matching IT roles at this moment. Check again later.</div>`;
                     timestampSpan.innerText = `${new Date().toLocaleTimeString()} · no jobs`;
                     return;
                 }
-                renderJobs(data.jobs);
-                timestampSpan.innerText = `last sync: ${new Date().toLocaleTimeString()} · ${data.jobs.length} roles`;
+
+                renderJobs(jobs);
+                timestampSpan.innerText = `last sync: ${new Date().toLocaleTimeString()} · ${jobs.length} roles`;
             } catch (err) {
                 console.error(err);
                 container.innerHTML = `<div class="error-box">⚠️ Could not fetch career feed. Please refresh or try again later.</div>`;
@@ -181,7 +188,10 @@
             const container = document.getElementById('jobContainer');
             let html = '';
             for (const job of jobs) {
-                const posted = job.posted_date ? new Date(job.posted_date).toLocaleDateString() : 'recent';
+                // Compatibility for both posted_date and posted naming
+                const dateVal = job.posted_date || job.posted;
+                const posted = dateVal ? new Date(dateVal).toLocaleDateString() : 'recent';
+                
                 html += `
                     <div class="job-card">
                         <div class="job-title">
@@ -189,9 +199,9 @@
                         </div>
                         <div class="job-meta">
                             <span><i class="fas fa-building"></i> ${escapeHtml(job.company)}</span>
-                            <span><i class="fas fa-map-marker-alt"></i> ${escapeHtml(job.location || 'Remote')}</span>
+                            <span><i class="fas fa-map-marker-alt"></i> ${escapeHtml(job.location || job.loc || 'Remote')}</span>
                             <span><i class="far fa-calendar-alt"></i> ${posted}</span>
-                            <span class="job-source"><i class="fas fa-globe"></i> ${escapeHtml(job.source)}</span>
+                            <span class="job-source"><i class="fas fa-globe"></i> ${escapeHtml(job.source || 'Global Feed')}</span>
                         </div>
                     </div>
                 `;
@@ -209,8 +219,9 @@
             });
         }
 
-        // Initial load + refresh every 15 minutes
+        // Initial load
         loadJobs();
+        // Refresh every 15 minutes
         setInterval(loadJobs, 15 * 60 * 1000);
     </script>
 </body>
