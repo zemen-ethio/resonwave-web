@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Styles derived from original career skeleton */
+        /* Career page specific styles */
         .career-hero {
             background: var(--brand-purple);
             color: white;
@@ -96,12 +96,6 @@
             border-radius: 16px;
             color: var(--text-gray);
         }
-        .refresh-note {
-            text-align: right;
-            font-size: 0.75rem;
-            color: #aaa;
-            margin-top: 10px;
-        }
         @media (max-width: 768px) {
             .career-hero { padding: 50px 20px; }
             .job-card { padding: 1.2rem; }
@@ -128,7 +122,7 @@
         <p>Live IT opportunities – remote & worldwide. We're always looking for talented engineers, support specialists, and IT leaders.</p>
     </div>
 
-    <div class="container" style="padding-left: 8%; padding-right: 8%; max-width: 1400px; margin: 0 auto;">
+    <div class="container" style="padding: 0 8%; max-width: 1400px; margin: 0 auto;">
         <div class="job-stats">
             <div><i class="fas fa-bolt" style="color: var(--brand-purple);"></i> Live feed · updates every 6h</div>
             <div class="last-updated" id="lastUpdate">loading timestamp...</div>
@@ -137,9 +131,6 @@
         <div id="jobContainer" class="job-grid">
             <div class="loading-box"><i class="fas fa-spinner fa-pulse"></i> Pulling latest IT listings...</div>
         </div>
-        <div class="refresh-note">
-            <i class="fas fa-database"></i> Data aggregated from global IT sources
-        </div>
     </div>
 
     <footer style="background: #f5f5f5; padding: 30px 8%; text-align: center; margin-top: 60px; color: #777; font-size: 0.8rem;">
@@ -147,7 +138,9 @@
     </footer>
 
     <script>
-        // Updated to use relative path to solve mapping issues
+        // Use a relative path to hit your Cloudflare Worker route
+        const DATA_URL = '/career/data'; 
+
         async function loadJobs() {
             const container = document.getElementById('jobContainer');
             const timestampSpan = document.getElementById('lastUpdate');
@@ -155,12 +148,14 @@
             try {
                 container.innerHTML = `<div class="loading-box"><i class="fas fa-sync-alt fa-spin"></i> Refreshing live feed ...</div>`;
                 
-                // Fetch using relative path to trigger the Worker mapped to /career
-                const response = await fetch('/career/data?t=' + Date.now());
+                // Fetching from the relative endpoint mapped to your Worker
+                const response = await fetch(DATA_URL + '?t=' + Date.now());
                 
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 
                 const data = await response.json();
+                
+                // Handle different possible JSON responses (direct array or jobs object)
                 const jobs = Array.isArray(data) ? data : (data.jobs || []);
 
                 if (jobs.length === 0) {
@@ -205,14 +200,13 @@
         function escapeHtml(str) {
             if (!str) return '';
             return str.replace(/[&<>]/g, function(m) {
-                if (m === '&') return '&amp;';
-                if (m === '<') return '&lt;';
-                if (m === '>') return '&gt;';
-                return m;
+                const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;' };
+                return map[m];
             });
         }
 
         loadJobs();
+        // Refresh every 15 minutes
         setInterval(loadJobs, 15 * 60 * 1000);
     </script>
 </body>
