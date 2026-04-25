@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Additional styles for job board – keeps brand consistency */
+        /* Styles derived from original career skeleton */
         .career-hero {
             background: var(--brand-purple);
             color: white;
@@ -138,7 +138,7 @@
             <div class="loading-box"><i class="fas fa-spinner fa-pulse"></i> Pulling latest IT listings...</div>
         </div>
         <div class="refresh-note">
-            <i class="fas fa-database"></i> Data aggregated from global IT talent sources
+            <i class="fas fa-database"></i> Data aggregated from global IT sources
         </div>
     </div>
 
@@ -147,7 +147,7 @@
     </footer>
 
     <script>
-        // Fetches data from the relative path /career/data served by your Cloudflare Worker
+        // Updated to use relative path to solve mapping issues
         async function loadJobs() {
             const container = document.getElementById('jobContainer');
             const timestampSpan = document.getElementById('lastUpdate');
@@ -155,14 +155,12 @@
             try {
                 container.innerHTML = `<div class="loading-box"><i class="fas fa-sync-alt fa-spin"></i> Refreshing live feed ...</div>`;
                 
-                // Relative fetch call
+                // Fetch using relative path to trigger the Worker mapped to /career
                 const response = await fetch('/career/data?t=' + Date.now());
                 
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 
                 const data = await response.json();
-                
-                // Supports both direct arrays or { jobs: [] } object formats
                 const jobs = Array.isArray(data) ? data : (data.jobs || []);
 
                 if (jobs.length === 0) {
@@ -184,7 +182,6 @@
             const container = document.getElementById('jobContainer');
             let html = '';
             for (const job of jobs) {
-                // Compatibility for different field naming conventions
                 const dateVal = job.posted_date || job.posted;
                 const posted = dateVal ? new Date(dateVal).toLocaleDateString() : 'recent';
                 
@@ -195,7 +192,7 @@
                         </div>
                         <div class="job-meta">
                             <span><i class="fas fa-building"></i> ${escapeHtml(job.company)}</span>
-                            <span><i class="fas fa-map-marker-alt"></i> ${escapeHtml(job.location || job.loc || 'Remote')}</span>
+                            <span><i class="fas fa-map-marker-alt"></i> ${escapeHtml(job.location || 'Remote')}</span>
                             <span><i class="far fa-calendar-alt"></i> ${posted}</span>
                             <span class="job-source"><i class="fas fa-globe"></i> ${escapeHtml(job.source || 'Global Feed')}</span>
                         </div>
@@ -215,9 +212,7 @@
             });
         }
 
-        // Initial execution
         loadJobs();
-        // Background refresh every 15 minutes
         setInterval(loadJobs, 15 * 60 * 1000);
     </script>
 </body>
