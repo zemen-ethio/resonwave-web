@@ -111,7 +111,6 @@
 </head>
 <body>
 
-    <!-- ========== EXACT SAME HEADER AS MAIN SITE ========== -->
     <header class="exact-header">
         <h1 class="exact-logo-text">Resonwave Technology</h1>
         <nav class="exact-nav">
@@ -124,7 +123,6 @@
         </nav>
     </header>
 
-    <!-- ========== CAREER HERO SECTION ========== -->
     <div class="career-hero">
         <h1>🚀 Join the Resonwave Team</h1>
         <p>Live IT opportunities – remote & worldwide. We're always looking for talented engineers, support specialists, and IT leaders.</p>
@@ -140,18 +138,16 @@
             <div class="loading-box"><i class="fas fa-spinner fa-pulse"></i> Pulling latest IT listings...</div>
         </div>
         <div class="refresh-note">
-            <i class="fas fa-database"></i> Data aggregated from Himalayas, Remotive, Adzuna
+            <i class="fas fa-database"></i> Data aggregated from global IT talent sources
         </div>
     </div>
 
-    <!-- ========== SIMPLE FOOTER (matches main site style) ========== -->
     <footer style="background: #f5f5f5; padding: 30px 8%; text-align: center; margin-top: 60px; color: #777; font-size: 0.8rem;">
         © 2026 Resonwave Technology – IT solutions in Dubai & remote career hub
     </footer>
 
- <script>
-        // No WORKER_URL variable needed! We use the relative path /career/data
-        
+    <script>
+        // Fetches data from the relative path /career/data served by your Cloudflare Worker
         async function loadJobs() {
             const container = document.getElementById('jobContainer');
             const timestampSpan = document.getElementById('lastUpdate');
@@ -159,14 +155,14 @@
             try {
                 container.innerHTML = `<div class="loading-box"><i class="fas fa-sync-alt fa-spin"></i> Refreshing live feed ...</div>`;
                 
-                // Fetch from the local endpoint on your domain
+                // Relative fetch call
                 const response = await fetch('/career/data?t=' + Date.now());
                 
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 
                 const data = await response.json();
                 
-                // Flexible check for both [array] or { jobs: [array] } formats
+                // Supports both direct arrays or { jobs: [] } object formats
                 const jobs = Array.isArray(data) ? data : (data.jobs || []);
 
                 if (jobs.length === 0) {
@@ -188,7 +184,7 @@
             const container = document.getElementById('jobContainer');
             let html = '';
             for (const job of jobs) {
-                // Compatibility for both posted_date and posted naming
+                // Compatibility for different field naming conventions
                 const dateVal = job.posted_date || job.posted;
                 const posted = dateVal ? new Date(dateVal).toLocaleDateString() : 'recent';
                 
@@ -219,9 +215,9 @@
             });
         }
 
-        // Initial load
+        // Initial execution
         loadJobs();
-        // Refresh every 15 minutes
+        // Background refresh every 15 minutes
         setInterval(loadJobs, 15 * 60 * 1000);
     </script>
 </body>
