@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Resonwave Technology | Sapphire Infinite Scroll</title>
+    <title>Resonwave Technology | Sapphire Touch</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -22,31 +22,26 @@
             height: 100vh;
         }
 
-        /* ----- HEADER with SAPPHIRE BLUE background & PURE WHITE text ----- */
+        /* ----- SAPPHIRE BLUE HEADER & PURE WHITE TEXT ----- */
         .exact-header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: #0F52BA;    /* SAPPHIRE BLUE (classic sapphire) */
-            backdrop-filter: none;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+            background: #0F52BA;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 5%;
             height: 80px;
             z-index: 1000;
-            border-bottom: none;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
         }
 
         .exact-logo-text {
             font-size: 1.8rem;
             font-weight: 700;
-            color: #FFFFFF;         /* pure white */
-            background: none;
-            -webkit-background-clip: unset;
-            background-clip: unset;
+            color: #FFFFFF;
             letter-spacing: -0.3px;
         }
 
@@ -59,20 +54,19 @@
         .exact-nav a {
             text-decoration: none;
             font-weight: 600;
-            color: #FFFFFF !important;    /* pure white for all nav links */
+            color: #FFFFFF !important;
             transition: 0.2s;
             font-size: 1rem;
             opacity: 0.95;
         }
 
         .exact-nav a:hover, .exact-nav a.active {
-            color: #FFE484 !important;    /* soft golden accent for hover, still readable */
+            color: #FFE484 !important;
             border-bottom: 2px solid #FFE484;
             padding-bottom: 4px;
-            opacity: 1;
         }
 
-        /* ----- INFINITE SCROLL CONTAINER (full viewport minus header) ----- */
+        /* ----- INFINITE SCROLL CONTAINER ----- */
         .infinite-wrapper {
             position: relative;
             overflow-y: auto;
@@ -98,7 +92,7 @@
             flex-direction: column;
         }
 
-        /* ----- section styles (original design elevated) ----- */
+        /* ----- SPLIT SCREEN & CONTACT BOX (SAPPHIRE BLUE + WHITE TEXT) ----- */
         .split-screen {
             display: flex;
             flex-wrap: wrap;
@@ -115,37 +109,49 @@
         .rw-logo-img {
             max-width: 320px;
             width: 100%;
-            transition: 0.3s;
             filter: drop-shadow(0 10px 15px rgba(0,0,0,0.05));
         }
+
+        /* CONTACT BOX : SAPPHIRE BLUE BACKGROUND + PURE WHITE TEXT */
         .contact-box {
             flex: 0.9;
-            background: white;
+            background: #0F52BA;      /* Sapphire blue */
             padding: 2rem;
             border-radius: 32px;
-            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.1);
-            border: 1px solid #ede9fe;
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #FFFFFF;
         }
         .contact-box h2 {
             font-size: 2rem;
             margin-bottom: 1rem;
-            color: #1E1B2E;
+            color: #FFFFFF;
         }
-        .box-label {
+        .contact-box p {
+            color: #F0F4FF;
+            margin-bottom: 0.5rem;
+        }
+        .contact-box .box-label {
             font-weight: 700;
             margin: 1.2rem 0 0.3rem 0;
-            color: #6d28d9;
+            color: #FFE484;    /* soft gold accent for labels */
             font-size: 1rem;
         }
         .contact-box a {
-            color: #4a1d8c;
+            color: #FFFFFF;
             text-decoration: none;
             font-weight: 500;
+            border-bottom: 1px dotted rgba(255,255,255,0.4);
         }
-        .social-circle {
+        .contact-box a:hover {
+            color: #FFE484;
+            border-bottom-color: #FFE484;
+        }
+        /* Social circle inside sapphire box: white background with blue icon */
+        .contact-box .social-circle {
             width: 44px;
             height: 44px;
-            background: #ede9fe;
+            background: #FFFFFF;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -153,18 +159,19 @@
             transition: 0.2s;
             margin-top: 0.5rem;
         }
-        .social-circle i {
+        .contact-box .social-circle i {
             font-size: 1.3rem;
-            color: #6d28d9;
+            color: #0F52BA;
         }
-        .social-circle:hover {
-            background: #6d28d9;
+        .contact-box .social-circle:hover {
+            background: #FFE484;
             transform: scale(1.05);
         }
-        .social-circle:hover i {
-            color: white;
+        .contact-box .social-circle:hover i {
+            color: #0F52BA;
         }
 
+        /* ----- rest of page styles (unchanged, consistent) ----- */
         .section {
             padding: 3rem 5%;
         }
@@ -198,7 +205,6 @@
         .sub-label {
             color: #a855f7;
             font-weight: 600;
-            letter-spacing: 1px;
         }
         .checker-text h3 {
             font-size: 1.8rem;
@@ -220,7 +226,6 @@
             background: #4c1d95;
             transform: translateY(-2px);
         }
-
         .hero-blue-banner {
             background: linear-gradient(105deg, #1e1b4b 0%, #2d1b69 100%);
             padding: 3rem;
@@ -270,7 +275,6 @@
             padding: 1.5rem;
             border-radius: 28px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            transition: all 0.2s;
             text-align: center;
         }
         .s-card img {
@@ -296,8 +300,6 @@
         .partner-content {
             flex: 1;
         }
-
-        /* ----- FORM (modern) ----- */
         .form-container {
             margin-top: 1.5rem;
             background: #f8f6fe;
@@ -328,7 +330,6 @@
             border-radius: 20px;
             border: 1px solid #ddd8f0;
             font-family: inherit;
-            transition: 0.2s;
         }
         .btn-purple-box {
             background: #7c3aed;
@@ -373,16 +374,14 @@
     </nav>
 </header>
 
-<!-- INFINITE SCROLL WRAPPER: auto-scroll top to bottom, stops on hover, mouse takes over -->
 <div class="infinite-wrapper" id="infiniteWrapper">
     <div class="infinite-scroll" id="infiniteScroll">
-        <!-- ORIGINAL CONTENT (unique ID for cloning reference) -->
         <div class="scroll-item" id="originalContentBlock">
             <section id="home" class="split-screen">
                 <div class="logo-box">
                     <img src="Resonwave Logo.webp" alt="Resonwave Technology Logo" class="rw-logo-img">
                 </div>
-                <div class="contact-box" id="contact">
+                <div class="contact-box">
                     <h2>Contact Us</h2>
                     <p style="margin-bottom: 20px; font-weight: 500;"><i class="fas fa-map-marker-alt"></i> Dubai, UAE</p>
                     <h3 class="box-label">Email Us</h3>
@@ -396,7 +395,9 @@
                     <p>Sunday: Closed</p>
                     <h3 class="box-label">Socials</h3>
                     <a href="https://www.linkedin.com/company/resonwave/" target="_blank" class="social-link">
-                        <div class="social-circle"><i class="fab fa-linkedin-in"></i></div>
+                        <div class="social-circle">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
                     </a>
                 </div>
             </section>
@@ -473,12 +474,11 @@
                 </div>
             </section>
         </div>
-        <!-- clone will be inserted via js -->
     </div>
 </div>
 
 <script>
-    // ========== 1. EMAIL VALIDATION (FULLY FUNCTIONAL) ==========
+    // ========== EMAIL VALIDATION (fully functional) ==========
     (function() {
         const emailInput = document.getElementById("email_addr");
         const emailError = document.getElementById("email-error");
@@ -568,12 +568,11 @@
         }
     })();
 
-    // ========== 2. INFINITE SCROLL (TOP ➔ BOTTOM, HOVER STOPS, MOUSE TAKES OVER) ==========
+    // ========== INFINITE SCROLL (top to bottom, stops on hover, mouse takeover) ==========
     (function() {
         const wrapper = document.getElementById('infiniteWrapper');
         const scrollContainer = document.getElementById('infiniteScroll');
         const originalBlock = document.getElementById('originalContentBlock');
-        
         if (!wrapper || !scrollContainer || !originalBlock) return;
 
         function cloneClean(node) {
@@ -632,8 +631,7 @@
                 return;
             }
             if (!wrapper) return;
-            let newScrollTop = wrapper.scrollTop + SCROLL_SPEED;
-            wrapper.scrollTop = newScrollTop;
+            wrapper.scrollTop += SCROLL_SPEED;
             enforceBoundaryCorrection();
             refreshTotalHeight();
             animationFrameId = requestAnimationFrame(stepAutoScroll);
@@ -642,61 +640,32 @@
         function startAutoScroll() {
             if (animationFrameId) cancelAnimationFrame(animationFrameId);
             autoScrollActive = true;
-            if (!isHovering) {
-                animationFrameId = requestAnimationFrame(stepAutoScroll);
-            }
+            if (!isHovering) animationFrameId = requestAnimationFrame(stepAutoScroll);
         }
 
         function stopAutoScroll() {
             autoScrollActive = false;
-            if (animationFrameId) {
-                cancelAnimationFrame(animationFrameId);
-                animationFrameId = null;
-            }
-        }
-
-        function onMouseEnter() {
-            isHovering = true;
-            stopAutoScroll();   // STOPS infinite movement, mouse takes over
-        }
-
-        function onMouseLeave() {
-            isHovering = false;
-            if (!autoScrollActive) autoScrollActive = true;
             if (animationFrameId) cancelAnimationFrame(animationFrameId);
-            animationFrameId = requestAnimationFrame(stepAutoScroll);
+            animationFrameId = null;
         }
 
-        function onScrollHandler() {
-            enforceBoundaryCorrection();
-            refreshTotalHeight();
-        }
+        function onMouseEnter() { isHovering = true; stopAutoScroll(); }
+        function onMouseLeave() { isHovering = false; startAutoScroll(); }
+        function onScrollHandler() { enforceBoundaryCorrection(); refreshTotalHeight(); }
 
         wrapper.addEventListener('mouseenter', onMouseEnter);
         wrapper.addEventListener('mouseleave', onMouseLeave);
         wrapper.addEventListener('scroll', onScrollHandler);
-        
+
         window.addEventListener('load', () => {
             updateDimensions();
             enforceBoundaryCorrection();
             startAutoScroll();
         });
-        
-        const resizeObserver = new ResizeObserver(() => {
-            updateDimensions();
-            enforceBoundaryCorrection();
-        });
+        const resizeObserver = new ResizeObserver(() => { updateDimensions(); enforceBoundaryCorrection(); });
         resizeObserver.observe(scrollContainer);
-        
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                updateDimensions();
-                startAutoScroll();
-            });
-        } else {
-            updateDimensions();
-            startAutoScroll();
-        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => { updateDimensions(); startAutoScroll(); });
+        else { updateDimensions(); startAutoScroll(); }
     })();
 </script>
 </body>
