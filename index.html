@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Resonwave Technology | Infinite Scroll IT Solutions</title>
+    <title>Resonwave Technology | Sapphire Infinite Scroll</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -22,31 +22,31 @@
             height: 100vh;
         }
 
-        /* ----- HEADER (fixed, does not scroll) ----- */
+        /* ----- HEADER with SAPPHIRE BLUE background & PURE WHITE text ----- */
         .exact-header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+            background: #0F52BA;    /* SAPPHIRE BLUE (classic sapphire) */
+            backdrop-filter: none;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 5%;
             height: 80px;
             z-index: 1000;
-            border-bottom: 1px solid rgba(98, 0, 234, 0.1);
+            border-bottom: none;
         }
 
         .exact-logo-text {
             font-size: 1.8rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #6a1b9a, #9c27b0);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
+            color: #FFFFFF;         /* pure white */
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
             letter-spacing: -0.3px;
         }
 
@@ -59,15 +59,17 @@
         .exact-nav a {
             text-decoration: none;
             font-weight: 600;
-            color: #1e293b;
+            color: #FFFFFF !important;    /* pure white for all nav links */
             transition: 0.2s;
             font-size: 1rem;
+            opacity: 0.95;
         }
 
         .exact-nav a:hover, .exact-nav a.active {
-            color: #9c27b0;
-            border-bottom: 2px solid #9c27b0;
+            color: #FFE484 !important;    /* soft golden accent for hover, still readable */
+            border-bottom: 2px solid #FFE484;
             padding-bottom: 4px;
+            opacity: 1;
         }
 
         /* ----- INFINITE SCROLL CONTAINER (full viewport minus header) ----- */
@@ -471,12 +473,12 @@
                 </div>
             </section>
         </div>
-        <!-- the clone will be appended here dynamically (exactly one duplicate for infinite loop) -->
+        <!-- clone will be inserted via js -->
     </div>
 </div>
 
 <script>
-    // ========== 1. EMAIL VALIDATION (FULL PRESERVED) ==========
+    // ========== 1. EMAIL VALIDATION (FULLY FUNCTIONAL) ==========
     (function() {
         const emailInput = document.getElementById("email_addr");
         const emailError = document.getElementById("email-error");
@@ -566,7 +568,7 @@
         }
     })();
 
-    // ========== 2. INFINITE SCROLL (TOP TO BOTTOM, HOVER = STOP, MOUSE TAKES OVER) ==========
+    // ========== 2. INFINITE SCROLL (TOP ➔ BOTTOM, HOVER STOPS, MOUSE TAKES OVER) ==========
     (function() {
         const wrapper = document.getElementById('infiniteWrapper');
         const scrollContainer = document.getElementById('infiniteScroll');
@@ -574,7 +576,6 @@
         
         if (!wrapper || !scrollContainer || !originalBlock) return;
 
-        // Clone original content without ID conflicts
         function cloneClean(node) {
             const clone = node.cloneNode(true);
             const allIds = clone.querySelectorAll('[id]');
@@ -586,72 +587,55 @@
         const cloneBlock = cloneClean(originalBlock);
         scrollContainer.appendChild(cloneBlock);
 
-        let originalHeight = originalBlock.offsetHeight;      // height of one block
-        let totalHeight = scrollContainer.scrollHeight;       // should be originalHeight * 2
+        let originalHeight = originalBlock.offsetHeight;
+        let totalHeight = scrollContainer.scrollHeight;
         let autoScrollActive = true;
         let animationFrameId = null;
         let isHovering = false;
-        const SCROLL_SPEED = 1.2;        // px per frame (smooth downward drift)
+        const SCROLL_SPEED = 1.2;
 
-        // Recalculate dimensions on resize or dynamic changes
         function updateDimensions() {
             originalHeight = originalBlock.offsetHeight;
             totalHeight = scrollContainer.scrollHeight;
         }
         window.addEventListener('resize', () => {
             updateDimensions();
-            // after resize fix boundaries to avoid visual gap
             enforceBoundaryCorrection();
         });
 
-        // Seamless infinite boundary correction (for both auto and manual)
         function enforceBoundaryCorrection() {
             if (!wrapper) return;
             const st = wrapper.scrollTop;
             const clientH = wrapper.clientHeight;
             if (totalHeight <= 0) return;
-            // if scrolled too far up (top edge)
             if (st <= 0) {
                 wrapper.scrollTop = originalHeight;
                 return;
             }
-            // if scrolled past the second copy (bottom part)
             if (st + clientH >= totalHeight - 2) {
                 const newTop = st - originalHeight;
                 if (newTop >= 0) wrapper.scrollTop = newTop;
                 else wrapper.scrollTop = originalHeight / 2;
                 return;
             }
-            // edge case: if somehow scroll near top of second block?
-            if (st > originalHeight * 1.8 && st + clientH < totalHeight) {
-                // keep as is
-            }
         }
 
-        // update totalHeight periodically (dynamic content not changing drastically but safe)
         function refreshTotalHeight() {
             totalHeight = scrollContainer.scrollHeight;
             originalHeight = originalBlock.offsetHeight;
         }
 
-        // Auto-scroll step: moves scrollTop down (from top to bottom)
         function stepAutoScroll() {
             if (!autoScrollActive || isHovering) {
-                // if paused due to hover, cancel further frames
                 if (animationFrameId) cancelAnimationFrame(animationFrameId);
                 animationFrameId = null;
                 return;
             }
             if (!wrapper) return;
-
             let newScrollTop = wrapper.scrollTop + SCROLL_SPEED;
             wrapper.scrollTop = newScrollTop;
-            
-            // Enforce infinite loop boundaries AFTER moving
             enforceBoundaryCorrection();
             refreshTotalHeight();
-
-            // Continue animation
             animationFrameId = requestAnimationFrame(stepAutoScroll);
         }
 
@@ -671,59 +655,39 @@
             }
         }
 
-        // HOVER: completely stops auto-scroll, mouse takes over manual scroll
         function onMouseEnter() {
             isHovering = true;
-            stopAutoScroll();    // stops infinite movement immediately
+            stopAutoScroll();   // STOPS infinite movement, mouse takes over
         }
 
-        // MOUSE LEAVE: restart auto-scroll seamlessly from current position
         function onMouseLeave() {
             isHovering = false;
-            // only restart if autoScrollActive flag is true (it is, just need to start)
             if (!autoScrollActive) autoScrollActive = true;
             if (animationFrameId) cancelAnimationFrame(animationFrameId);
             animationFrameId = requestAnimationFrame(stepAutoScroll);
         }
 
-        // enforce correction also on manual scroll (including wheel & touch)
         function onScrollHandler() {
-            if (!isHovering && autoScrollActive) {
-                // if auto-scroll is currently active and user scrolls manually, we keep auto-scroll,
-                // but requirement says "when mouse takes over (hover) stops" — means during hover it stops.
-                // However any manual scroll while not hovering? not needed to stop auto.
-                // But we just correct boundaries in all cases.
-            }
             enforceBoundaryCorrection();
             refreshTotalHeight();
         }
 
-        // Attach hover events (stops on hover, manual takeover)
         wrapper.addEventListener('mouseenter', onMouseEnter);
         wrapper.addEventListener('mouseleave', onMouseLeave);
-        // Ensure that manual scrolling doesn't conflict: whenever user scrolls (wheel/drag) it's active, but hover already stops auto. 
-        // When not hovering, auto-scroll remains active and user can also scroll but it might fight? However we want "mouse will take over" only while hover.
-        // Requirement: on hover, scroll stops, mouse takes over (full manual). When mouse leaves, auto-scroll resumes.
-        // So we do exactly that. On mouseleave we restart, on mouseenter we kill auto.
-        // Also add wheel event to just ensure no conflict but not needed.
         wrapper.addEventListener('scroll', onScrollHandler);
         
-        // also re-correct after any spontaneous mutation (images load)
         window.addEventListener('load', () => {
             updateDimensions();
             enforceBoundaryCorrection();
-            // initial start
             startAutoScroll();
         });
         
-        // additional small observer to keep dimensions accurate (images)
         const resizeObserver = new ResizeObserver(() => {
             updateDimensions();
             enforceBoundaryCorrection();
         });
         resizeObserver.observe(scrollContainer);
         
-        // start after dom ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => {
                 updateDimensions();
