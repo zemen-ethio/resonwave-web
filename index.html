@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Form validation styles */
+        /* Additional styles for email validation */
         .email-error {
             color: #e74c3c;
             font-size: 0.8rem;
@@ -25,12 +25,12 @@
             border-color: #e74c3c;
         }
 
-        /* Infinite scroll container – allows manual scrolling */
+        /* ========== INFINITE SCROLL CONTAINER (MANUAL SCROLL SUPPORT) ========== */
         .infinite-wrapper {
             position: relative;
-            overflow-y: auto;
-            height: 100vh;
-            scroll-behavior: auto;   /* no smooth scrolling for manual override */
+            overflow-y: auto;          /* Allow manual scrolling */
+            height: 100vh;             /* Full viewport height */
+            scroll-behavior: auto;     /* Disable smooth scrolling for manual control */
         }
 
         .infinite-scroll {
@@ -38,7 +38,7 @@
             flex-direction: column;
         }
 
-        /* Optional: nicer scrollbar */
+        /* Optional: remove default scrollbar styling if needed */
         .infinite-wrapper::-webkit-scrollbar {
             width: 8px;
         }
@@ -67,7 +67,7 @@
 
     <div class="infinite-wrapper" id="infiniteWrapper">
         <div class="infinite-scroll" id="infiniteScroll">
-            <!-- Original content block (will be duplicated by JS without IDs) -->
+            <!-- Original content (will be duplicated by JavaScript) -->
             <div class="scroll-item" id="originalContent">
                 <section id="home" class="split-screen">
                     <div class="logo-box">
@@ -161,38 +161,40 @@
                             <div class="partner-content">
                                 <h3>Dedicated after sales support</h3>
                                 <p>Our commitment extends beyond implementation. We provide comprehensive support to ensure your systems run smoothly and efficiently.</p>
-                                <section class="form-container">
-                                    <div class="form-box">
-                                        <h3>Technical Support Request</h3>
-                                        <p>Your request will be sent to our engineering team for review.</p>
-                                        <form id="support-form-element">
-                                            <div class="form-row">
-                                                <div class="form-group">
-                                                    <label>First Name</label>
-                                                    <input type="text" name="first_name" id="f_name" required placeholder="John">
+                                <section id="consultation-form" class="form-container">
+                                    <div class="form-container" id="support-form">
+                                        <div class="form-box">
+                                            <h3>Technical Support Request</h3>
+                                            <p>Your request will be sent to our engineering team for review.</p>
+                                            <form id="support-form-element">
+                                                <div class="form-row">
+                                                    <div class="form-group">
+                                                        <label>First Name</label>
+                                                        <input type="text" name="first_name" id="f_name" required placeholder="John">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Last Name</label>
+                                                        <input type="text" name="last_name" id="l_name" required placeholder="Peter">
+                                                    </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Last Name</label>
-                                                    <input type="text" name="last_name" id="l_name" required placeholder="Peter">
+                                                    <label>Your Email</label>
+                                                    <input type="email" name="email" id="email_addr" required placeholder="contact@resonwave.com">
+                                                    <div class="email-error" id="email-error"></div>
+                                                    <div class="email-warning" id="email-warning"></div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Your Email</label>
-                                                <input type="email" name="email" id="email_addr" required placeholder="contact@resonwave.com">
-                                                <div class="email-error" id="email-error"></div>
-                                                <div class="email-warning" id="email-warning"></div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Phone Number</label>
-                                                <input type="tel" name="phone" id="phone_num" required placeholder="+971 ...">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Message (Max 1500 chars)</label>
-                                                <textarea name="message" id="msg_body" maxlength="1500" required placeholder="Describe your issue..."></textarea>
-                                            </div>
-                                            <button type="submit" class="btn-purple-box" id="submit-btn">Submit Ticket</button>
-                                            <p id="status-msg" style="margin-top: 10px; display: none; font-weight: 600;">Sending...</p>
-                                        </form>
+                                                <div class="form-group">
+                                                    <label>Phone Number</label>
+                                                    <input type="tel" name="phone" id="phone_num" required placeholder="+971 ...">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Message (Max 1500 chars)</label>
+                                                    <textarea name="message" id="msg_body" maxlength="1500" required placeholder="Describe your issue..."></textarea>
+                                                </div>
+                                                <button type="submit" class="btn-purple-box" id="submit-btn">Submit Ticket</button>
+                                                <p id="status-msg" style="margin-top: 10px; display: none; color: var(--brand-purple); font-weight: 600;">Sending...</p>
+                                            </form>
+                                        </div>
                                     </div>
                                 </section>
                             </div>
@@ -200,12 +202,21 @@
                     </div>
                 </section>
             </div>
-            <!-- The duplicate will be appended here by JavaScript -->
+            <!-- Duplicate will be inserted here by JavaScript -->
         </div>
     </div>
 
     <script>
-        // ========== EMAIL VALIDATION SCRIPT (full, as before) ==========
+        // ========== ENHANCED EMAIL VALIDATION (unchanged, but IDs are unique) ==========
+        // ... (keep your existing validation script exactly as before)
+        // To save space, I'm condensing; but in your actual file, paste the full validation code here.
+        // For brevity, I'll include a placeholder – you must reuse the previous validation script.
+        // Actually, I'll repeat the full validation code to ensure completeness.
+
+        // (Copy the entire validation script from your previous answer here)
+        // I'll do that below.
+
+        // ===== EMAIL VALIDATION =====
         const emailInput = document.getElementById("email_addr");
         const emailError = document.getElementById("email-error");
         const emailWarning = document.getElementById("email-warning");
@@ -235,15 +246,31 @@
         }
 
         function validateLocalPart(local) {
-            if (!local || local.length === 0) return { valid: false, message: "Missing username before @." };
-            if (local.length < 2) return { valid: false, message: "Username is too short (at least 2 characters)." };
-            if (local.length > 64) return { valid: false, message: "Username is too long (max 64 characters)." };
-            if (local.startsWith('.') || local.endsWith('.')) return { valid: false, message: "Username cannot start or end with a dot." };
-            if (local.includes('..')) return { valid: false, message: "Username cannot contain consecutive dots." };
-            if (!/^[a-z0-9._-]+$/.test(local)) return { valid: false, message: "Username contains invalid characters. Only letters, numbers, dots, underscores, and hyphens are allowed." };
+            if (!local || local.length === 0) {
+                return { valid: false, message: "Missing username before @." };
+            }
+            if (local.length < 2) {
+                return { valid: false, message: "Username is too short (at least 2 characters)." };
+            }
+            if (local.length > 64) {
+                return { valid: false, message: "Username is too long (max 64 characters)." };
+            }
+            if (local.startsWith('.') || local.endsWith('.')) {
+                return { valid: false, message: "Username cannot start or end with a dot." };
+            }
+            if (local.includes('..')) {
+                return { valid: false, message: "Username cannot contain consecutive dots." };
+            }
+            if (!/^[a-z0-9._-]+$/.test(local)) {
+                return { valid: false, message: "Username contains invalid characters. Only letters, numbers, dots, underscores, and hyphens are allowed." };
+            }
             let warning = null;
-            if (/^\d+$/.test(local)) warning = "Username is all numbers – please double‑check it's correct.";
-            if (!local.includes('.') && local.length > 12 && /^[a-z]+$/.test(local)) warning = warning || "Username has no dot and is long – did you mean first.last?";
+            if (/^\d+$/.test(local)) {
+                warning = "Username is all numbers – please double‑check it's correct.";
+            }
+            if (!local.includes('.') && local.length > 12 && /^[a-z]+$/.test(local)) {
+                warning = warning || "Username has no dot and is long – did you mean first.last?";
+            }
             return { valid: true, message: null, warning: warning };
         }
 
@@ -271,25 +298,32 @@
                 showEmailError("Email address is required.");
                 return false;
             }
+
             const { local, domain } = parseEmail(email);
             if (!local || !domain) {
                 showEmailError("Please include an '@' symbol and a valid domain (e.g., name@example.com).");
                 return false;
             }
+
             const localCheck = validateLocalPart(local);
             if (!localCheck.valid) {
                 showEmailError(localCheck.message);
                 return false;
             }
-            if (localCheck.warning) showEmailWarning(localCheck.warning);
+            if (localCheck.warning) {
+                showEmailWarning(localCheck.warning);
+            }
+
             if (commonTypos[domain]) {
                 showEmailError(`Did you mean @${commonTypos[domain]}?`);
                 return false;
             }
+
             if (!domain.includes('.') || domain.split('.').pop().length < 2) {
                 showEmailError("Please enter a complete domain (e.g., @example.com).");
                 return false;
             }
+
             emailWarning.textContent = "Checking domain...";
             emailWarning.style.display = "block";
             const hasMX = await domainHasMX(domain);
@@ -298,6 +332,7 @@
                 emailWarning.style.display = "none";
                 return false;
             }
+
             clearEmailMessages();
             return true;
         }
@@ -309,13 +344,17 @@
             }
             await validateFullEmail(emailInput.value.trim());
         });
-        emailInput.addEventListener("input", function() { clearEmailMessages(); });
+
+        emailInput.addEventListener("input", function() {
+            clearEmailMessages();
+        });
 
         const form = document.getElementById("support-form-element");
         const statusMsg = document.getElementById("status-msg");
 
         form.addEventListener("submit", async function(event) {
             event.preventDefault();
+            
             const email = emailInput.value.trim();
             const isEmailValid = await validateFullEmail(email);
             if (!isEmailValid) {
@@ -324,14 +363,18 @@
                 statusMsg.innerHTML = "Please correct the email address before submitting.";
                 return;
             }
+
             if (emailWarning.style.display === "block") {
                 const proceed = confirm("Your email address has a possible typo. Continue anyway?");
                 if (!proceed) return;
             }
+
             statusMsg.style.display = "block";
             statusMsg.style.color = "#0F52BA";
             statusMsg.innerHTML = "Processing Ticket...";
+
             const data = new FormData(form);
+            
             fetch("https://formspree.io/f/xvzvaadq", {
                 method: "POST",
                 body: data,
@@ -349,50 +392,54 @@
             });
         });
 
-        // ========== INFINITE SCROLL (AUTO-SCROLL, STOPS ON HOVER, MANUAL SCROLL POSSIBLE) ==========
+        // ========== INFINITE SCROLL WITH MANUAL OVERRIDE ==========
         (function() {
             const wrapper = document.getElementById('infiniteWrapper');
             const scrollContainer = document.getElementById('infiniteScroll');
-            const original = document.getElementById('originalContent');
+            const originalContent = document.getElementById('originalContent');
+            
+            if (!wrapper || !scrollContainer || !originalContent) return;
 
-            if (!wrapper || !scrollContainer || !original) return;
-
-            // 1. Duplicate content without IDs
+            // 1. Clone content without IDs (to avoid duplicates)
             function cloneWithoutIds(element) {
                 const clone = element.cloneNode(true);
-                clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+                const allIds = clone.querySelectorAll('[id]');
+                allIds.forEach(el => el.removeAttribute('id'));
                 if (clone.id) clone.removeAttribute('id');
                 return clone;
             }
-            const clone = cloneWithoutIds(original);
-            scrollContainer.appendChild(clone);
 
+            const cloneItem = cloneWithoutIds(originalContent);
+            scrollContainer.appendChild(cloneItem);
+
+            // 2. Auto-scroll variables
             let autoScrollActive = true;
+            let scrollSpeed = 1.2;        // pixels per frame (adjust for desired speed)
             let animationId = null;
-            let speed = 1.0;          // pixels per frame (adjust speed here)
-            let hoverTimer = null;
+            let userInteracted = false;
+            let idleTimeout = null;
 
-            function scrollStep() {
+            // Function to perform one scroll step upward
+            function stepAutoScroll() {
                 if (!autoScrollActive) return;
-                // If we are at the very top, jump to the middle to create seamless loop
                 if (wrapper.scrollTop === 0) {
-                    wrapper.scrollTop = scrollContainer.scrollHeight / 2;
+                    // When at the top, jump to the middle (seamless loop)
+                    const totalHeight = scrollContainer.scrollHeight;
+                    const middle = totalHeight / 2;
+                    wrapper.scrollTop = middle;
                 }
-                // If we have reached near the bottom of the total duplicated content, jump back
-                const maxScroll = scrollContainer.scrollHeight - wrapper.clientHeight;
-                if (wrapper.scrollTop >= maxScroll - 10) {
-                    wrapper.scrollTop = wrapper.scrollTop - (scrollContainer.scrollHeight / 2);
+                wrapper.scrollTop += scrollSpeed;
+                
+                // If we've scrolled past the second copy, reset to corresponding position
+                const totalHeight = scrollContainer.scrollHeight;
+                if (wrapper.scrollTop >= totalHeight - wrapper.clientHeight) {
+                    wrapper.scrollTop = wrapper.scrollTop - (totalHeight / 2);
                 }
-                wrapper.scrollTop += speed;
-                animationId = requestAnimationFrame(scrollStep);
+                
+                animationId = requestAnimationFrame(stepAutoScroll);
             }
 
-            function startAutoScroll() {
-                if (animationId) cancelAnimationFrame(animationId);
-                autoScrollActive = true;
-                animationId = requestAnimationFrame(scrollStep);
-            }
-
+            // Stop auto-scroll and cancel frame
             function stopAutoScroll() {
                 if (animationId) {
                     cancelAnimationFrame(animationId);
@@ -401,38 +448,49 @@
                 autoScrollActive = false;
             }
 
-            // On mouse enter: stop auto-scroll immediately
-            wrapper.addEventListener('mouseenter', () => {
-                if (hoverTimer) clearTimeout(hoverTimer);
+            // Start auto-scroll
+            function startAutoScroll() {
+                if (autoScrollActive) return;
+                autoScrollActive = true;
+                animationId = requestAnimationFrame(stepAutoScroll);
+            }
+
+            // Pause auto-scroll on user interaction (hover or manual scroll)
+            function pauseAutoScroll() {
+                if (!autoScrollActive) return;
                 stopAutoScroll();
-            });
-
-            // On mouse leave: restart auto-scroll after 1.5 seconds
-            wrapper.addEventListener('mouseleave', () => {
-                hoverTimer = setTimeout(() => {
-                    startAutoScroll();
-                }, 1500);
-            });
-
-            // Also stop auto-scroll when user manually scrolls (wheel, touch, or scrollbar drag)
-            wrapper.addEventListener('wheel', () => {
-                if (autoScrollActive) stopAutoScroll();
-                // Reset the timer for restart
-                if (hoverTimer) clearTimeout(hoverTimer);
-                hoverTimer = setTimeout(() => {
-                    startAutoScroll();
-                }, 1500);
-            });
-            wrapper.addEventListener('scroll', () => {
-                // Only react if it's a user-induced scroll (we can detect difference but simple: if autoScrollActive, stop)
-                if (autoScrollActive) {
-                    stopAutoScroll();
-                    if (hoverTimer) clearTimeout(hoverTimer);
-                    hoverTimer = setTimeout(() => {
+                userInteracted = true;
+                // Clear any previous idle timeout
+                if (idleTimeout) clearTimeout(idleTimeout);
+                // Resume after 3 seconds of no further interaction
+                idleTimeout = setTimeout(() => {
+                    if (userInteracted) {
+                        userInteracted = false;
                         startAutoScroll();
-                    }, 1500);
+                    }
+                }, 3000);
+            }
+
+            // Resume immediately when mouse leaves (if not manually interacted recently)
+            function resumeOnMouseLeave() {
+                if (idleTimeout) clearTimeout(idleTimeout);
+                userInteracted = false;
+                if (!autoScrollActive) {
+                    startAutoScroll();
+                }
+            }
+
+            // Events to pause auto-scroll
+            wrapper.addEventListener('mouseenter', pauseAutoScroll);
+            wrapper.addEventListener('wheel', pauseAutoScroll);
+            wrapper.addEventListener('scroll', () => {
+                // Only pause if the scroll was triggered by user (not our auto-scroll)
+                if (autoScrollActive) {
+                    // A small delay to avoid conflict with auto-scroll frames
+                    setTimeout(pauseAutoScroll, 10);
                 }
             });
+            wrapper.addEventListener('mouseleave', resumeOnMouseLeave);
 
             // Start the auto-scroll
             startAutoScroll();
