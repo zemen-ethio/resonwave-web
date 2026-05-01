@@ -25,31 +25,29 @@
             border-color: #e74c3c;
         }
 
-        /* ========== INFINITE VERTICAL SCROLL ANIMATION ========== */
+        /* ========== INFINITE SCROLL CONTAINER (MANUAL SCROLL SUPPORT) ========== */
         .infinite-wrapper {
             position: relative;
-            overflow: hidden;
-            height: 100vh; /* Visible area height */
+            overflow-y: auto;          /* Allow manual scrolling */
+            height: 100vh;             /* Full viewport height */
+            scroll-behavior: auto;     /* Disable smooth scrolling for manual control */
         }
 
         .infinite-scroll {
             display: flex;
             flex-direction: column;
-            animation: scrollUp 30s linear infinite;
         }
 
-        @keyframes scrollUp {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(-50%);
-            }
+        /* Optional: remove default scrollbar styling if needed */
+        .infinite-wrapper::-webkit-scrollbar {
+            width: 8px;
         }
-
-        /* Pause animation on hover (optional) */
-        .infinite-wrapper:hover .infinite-scroll {
-            animation-play-state: paused;
+        .infinite-wrapper::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .infinite-wrapper::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -67,10 +65,10 @@
         </nav>
     </header>
 
-    <div class="infinite-wrapper">
+    <div class="infinite-wrapper" id="infiniteWrapper">
         <div class="infinite-scroll" id="infiniteScroll">
-            <!-- Original content -->
-            <div class="scroll-item">
+            <!-- Original content (will be duplicated by JavaScript) -->
+            <div class="scroll-item" id="originalContent">
                 <section id="home" class="split-screen">
                     <div class="logo-box">
                         <img src="Resonwave Logo.webp" alt="Resonwave Technology Logo" class="rw-logo-img">
@@ -204,12 +202,21 @@
                     </div>
                 </section>
             </div>
-            <!-- Duplicate content will be injected here by JavaScript (without IDs) -->
+            <!-- Duplicate will be inserted here by JavaScript -->
         </div>
     </div>
 
     <script>
-        // ========== ENHANCED EMAIL VALIDATION (LOCAL PART + DOMAIN MX) ==========
+        // ========== ENHANCED EMAIL VALIDATION (unchanged, but IDs are unique) ==========
+        // ... (keep your existing validation script exactly as before)
+        // To save space, I'm condensing; but in your actual file, paste the full validation code here.
+        // For brevity, I'll include a placeholder – you must reuse the previous validation script.
+        // Actually, I'll repeat the full validation code to ensure completeness.
+
+        // (Copy the entire validation script from your previous answer here)
+        // I'll do that below.
+
+        // ===== EMAIL VALIDATION =====
         const emailInput = document.getElementById("email_addr");
         const emailError = document.getElementById("email-error");
         const emailWarning = document.getElementById("email-warning");
@@ -385,23 +392,109 @@
             });
         });
 
-        // ========== INFINITE SCROLL – CLONE CONTENT WITHOUT IDs ==========
-        function cloneWithoutIds(element) {
-            const clone = element.cloneNode(true);
-            // Remove all id attributes from the clone to avoid duplicates
-            const allElementsWithId = clone.querySelectorAll('[id]');
-            allElementsWithId.forEach(el => el.removeAttribute('id'));
-            // Also remove id from the root element if present
-            if (clone.id) clone.removeAttribute('id');
-            return clone;
-        }
-
-        const originalScrollItem = document.querySelector('.scroll-item');
-        if (originalScrollItem) {
-            const cloneItem = cloneWithoutIds(originalScrollItem);
+        // ========== INFINITE SCROLL WITH MANUAL OVERRIDE ==========
+        (function() {
+            const wrapper = document.getElementById('infiniteWrapper');
             const scrollContainer = document.getElementById('infiniteScroll');
+            const originalContent = document.getElementById('originalContent');
+            
+            if (!wrapper || !scrollContainer || !originalContent) return;
+
+            // 1. Clone content without IDs (to avoid duplicates)
+            function cloneWithoutIds(element) {
+                const clone = element.cloneNode(true);
+                const allIds = clone.querySelectorAll('[id]');
+                allIds.forEach(el => el.removeAttribute('id'));
+                if (clone.id) clone.removeAttribute('id');
+                return clone;
+            }
+
+            const cloneItem = cloneWithoutIds(originalContent);
             scrollContainer.appendChild(cloneItem);
-        }
+
+            // 2. Auto-scroll variables
+            let autoScrollActive = true;
+            let scrollSpeed = 1.2;        // pixels per frame (adjust for desired speed)
+            let animationId = null;
+            let userInteracted = false;
+            let idleTimeout = null;
+
+            // Function to perform one scroll step upward
+            function stepAutoScroll() {
+                if (!autoScrollActive) return;
+                if (wrapper.scrollTop === 0) {
+                    // When at the top, jump to the middle (seamless loop)
+                    const totalHeight = scrollContainer.scrollHeight;
+                    const middle = totalHeight / 2;
+                    wrapper.scrollTop = middle;
+                }
+                wrapper.scrollTop += scrollSpeed;
+                
+                // If we've scrolled past the second copy, reset to corresponding position
+                const totalHeight = scrollContainer.scrollHeight;
+                if (wrapper.scrollTop >= totalHeight - wrapper.clientHeight) {
+                    wrapper.scrollTop = wrapper.scrollTop - (totalHeight / 2);
+                }
+                
+                animationId = requestAnimationFrame(stepAutoScroll);
+            }
+
+            // Stop auto-scroll and cancel frame
+            function stopAutoScroll() {
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                    animationId = null;
+                }
+                autoScrollActive = false;
+            }
+
+            // Start auto-scroll
+            function startAutoScroll() {
+                if (autoScrollActive) return;
+                autoScrollActive = true;
+                animationId = requestAnimationFrame(stepAutoScroll);
+            }
+
+            // Pause auto-scroll on user interaction (hover or manual scroll)
+            function pauseAutoScroll() {
+                if (!autoScrollActive) return;
+                stopAutoScroll();
+                userInteracted = true;
+                // Clear any previous idle timeout
+                if (idleTimeout) clearTimeout(idleTimeout);
+                // Resume after 3 seconds of no further interaction
+                idleTimeout = setTimeout(() => {
+                    if (userInteracted) {
+                        userInteracted = false;
+                        startAutoScroll();
+                    }
+                }, 3000);
+            }
+
+            // Resume immediately when mouse leaves (if not manually interacted recently)
+            function resumeOnMouseLeave() {
+                if (idleTimeout) clearTimeout(idleTimeout);
+                userInteracted = false;
+                if (!autoScrollActive) {
+                    startAutoScroll();
+                }
+            }
+
+            // Events to pause auto-scroll
+            wrapper.addEventListener('mouseenter', pauseAutoScroll);
+            wrapper.addEventListener('wheel', pauseAutoScroll);
+            wrapper.addEventListener('scroll', () => {
+                // Only pause if the scroll was triggered by user (not our auto-scroll)
+                if (autoScrollActive) {
+                    // A small delay to avoid conflict with auto-scroll frames
+                    setTimeout(pauseAutoScroll, 10);
+                }
+            });
+            wrapper.addEventListener('mouseleave', resumeOnMouseLeave);
+
+            // Start the auto-scroll
+            startAutoScroll();
+        })();
     </script>
 </body>
 </html>
