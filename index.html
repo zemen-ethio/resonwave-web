@@ -24,6 +24,33 @@
         .form-group input.error-border {
             border-color: #e74c3c;
         }
+
+        /* ========== INFINITE VERTICAL SCROLL ANIMATION ========== */
+        .infinite-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 100vh; /* Visible area height */
+        }
+
+        .infinite-scroll {
+            display: flex;
+            flex-direction: column;
+            animation: scrollUp 30s linear infinite;
+        }
+
+        @keyframes scrollUp {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        /* Pause animation on hover (optional) */
+        .infinite-wrapper:hover .infinite-scroll {
+            animation-play-state: paused;
+        }
     </style>
 </head>
 <body>
@@ -35,73 +62,65 @@
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#services">Services</a></li>
-                 <li><a href="career.html">Careers</a></li> 
+                <li><a href="career.html">Careers</a></li> 
             </ul>
         </nav>
     </header>
 
     <div class="infinite-wrapper">
-        <div class="infinite-scroll">
-            
+        <div class="infinite-scroll" id="infiniteScroll">
+            <!-- Original content -->
             <div class="scroll-item">
-                
                 <section id="home" class="split-screen">
                     <div class="logo-box">
                         <img src="Resonwave Logo.webp" alt="Resonwave Technology Logo" class="rw-logo-img">
                     </div>
-                   <div class="contact-box" id="contact">
-    <h2>Contact Us</h2>
-    <p style="margin-bottom: 20px; font-weight: 500;"><i class="fas fa-map-marker-alt"></i> Dubai, UAE</p>
-
-    <h3 class="box-label">Email Us</h3>
-    <p><a href="mailto:info@resonwave.com">info@resonwave.com</a></p>
-    <p><a href="mailto:nbelay10@gmail.com">nbelay10@gmail.com</a></p>
-    
-    <h3 class="box-label">Call Us</h3>
-    <p>+971 50 120 2709</p>
-
-    <h3 class="box-label">Opening Hours</h3>
-    <p>Mon - Fri: 9am - 5pm</p>
-    <p>Saturday: 10am - 3pm</p>
-    <p>Sunday: Closed</p>
-
-    <h3 class="box-label">Socials</h3>
-    <a href="https://www.linkedin.com/company/resonwave/" target="_blank" class="social-link">
-        <div class="social-circle">
-            <i class="fab fa-linkedin-in"></i>
-        </div>
-    </a>
-</div>
+                    <div class="contact-box" id="contact">
+                        <h2>Contact Us</h2>
+                        <p style="margin-bottom: 20px; font-weight: 500;"><i class="fas fa-map-marker-alt"></i> Dubai, UAE</p>
+                        <h3 class="box-label">Email Us</h3>
+                        <p><a href="mailto:info@resonwave.com">info@resonwave.com</a></p>
+                        <p><a href="mailto:nbelay10@gmail.com">nbelay10@gmail.com</a></p>
+                        <h3 class="box-label">Call Us</h3>
+                        <p>+971 50 120 2709</p>
+                        <h3 class="box-label">Opening Hours</h3>
+                        <p>Mon - Fri: 9am - 5pm</p>
+                        <p>Saturday: 10am - 3pm</p>
+                        <p>Sunday: Closed</p>
+                        <h3 class="box-label">Socials</h3>
+                        <a href="https://www.linkedin.com/company/resonwave/" target="_blank" class="social-link">
+                            <div class="social-circle">
+                                <i class="fab fa-linkedin-in"></i>
+                            </div>
+                        </a>
+                    </div>
                 </section>
+
                 <section id="about" class="section about-bg">
-    <div class="container">
-        
-        <div class="checker-row">
-            <div class="checker-image">
-                <img src="Our innovation.webp" alt="Resonwave Innovation">
-            </div>
-            <div class="checker-text">
-                <span class="sub-label">Our Inspiration:</span>
-                <h3>innovation and continuous improvement</h3>
-                <p>Resonwave Technology was born from a passion for excellence and a deep belief in continuous improvement. We take a fresh approach to every project.</p>
-                <a href="#services" class="btn-small">Explore our services</a>
-            </div>
-        </div>
-
-        <div class="checker-row reverse">
-            <div class="checker-image">
-                <img src="Solving business inefficiencies with expert IT solutions.webp" alt="IT Solutions">
-            </div>
-            <div class="checker-text">
-                <h3>Solving business inefficiencies with expert IT solutions</h3>
-                <p>We partner with businesses in Dubai, UAE to navigate the challenges of modern technology. Our focus is on streamlining workflows.</p>
-                <a href="#contact" class="btn-small">How we can help</a>
-            </div>
-        </div>
-
-    </div>
-</section>
-                
+                    <div class="container">
+                        <div class="checker-row">
+                            <div class="checker-image">
+                                <img src="Our innovation.webp" alt="Resonwave Innovation">
+                            </div>
+                            <div class="checker-text">
+                                <span class="sub-label">Our Inspiration:</span>
+                                <h3>innovation and continuous improvement</h3>
+                                <p>Resonwave Technology was born from a passion for excellence and a deep belief in continuous improvement. We take a fresh approach to every project.</p>
+                                <a href="#services" class="btn-small">Explore our services</a>
+                            </div>
+                        </div>
+                        <div class="checker-row reverse">
+                            <div class="checker-image">
+                                <img src="Solving business inefficiencies with expert IT solutions.webp" alt="IT Solutions">
+                            </div>
+                            <div class="checker-text">
+                                <h3>Solving business inefficiencies with expert IT solutions</h3>
+                                <p>We partner with businesses in Dubai, UAE to navigate the challenges of modern technology. Our focus is on streamlining workflows.</p>
+                                <a href="#contact" class="btn-small">How we can help</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
                 <section id="services" class="section">
                     <div class="hero-blue-banner">
@@ -109,11 +128,9 @@
                         <p>Discover how Resonwave Technology in Dubai can elevate your business. We specialize in cutting-edge IT solutions designed to drive efficiency and innovation.</p>
                         <button class="btn-white-box">Learn more about us</button>
                     </div>
-
                     <div class="container">
                         <h2 class="purple-title text-center" style="margin-top:60px;">Our expert IT services</h2>
                         <p class="text-center gray-subtext">At Resonwave Technology, we offer a specialized suite of services tailored to meet the evolving needs of modern businesses.</p>
-                        
                         <div class="services-grid">
                             <div class="s-card">
                                 <img src="Business Automation.webp" alt="Automation">
@@ -131,10 +148,7 @@
                                 <p>Innovate and stay ahead with our dedicated research and development services.</p>
                             </div>
                         </div>
-                        <!-- <div class="text-center"><button class="btn-purple-box">Request a quote</button></div> -->
-
                         <h2 class="purple-title text-center" style="margin-top:100px;">Your partner in technological advancement</h2>
-                        
                         <div class="partner-row">
                             <div class="partner-img-box"><img src="partners.webp" alt="Partner"></div>
                             <div class="partner-content">
@@ -142,261 +156,252 @@
                                 <p>What truly distinguishes Resonwave Technology in Dubai is our unwavering focus on emerging technologies and a commitment to continuous development.</p>
                             </div>
                         </div>
-                       <div class="partner-row reverse">
-    <div class="partner-img-box">
-        <img src="Misgan.png" alt="Resonwave Technology Technical Support Professional">
-    </div>
-    <div class="partner-content">
-        <h3>Dedicated after sales support</h3>
-        <p>Our commitment extends beyond implementation. We provide comprehensive support to ensure your systems run smoothly and efficiently.</p>
-        <!-- <button class="btn-purple-box">Book a consultation</button> -->
-
- <section id="consultation-form" class="form-container">
-  <div class="form-container" id="support-form">
-    <div class="form-box">
-        <h3>Technical Support Request</h3>
-        <p>Your request will be sent to our engineering team for review.</p>
-       <form id="support-form-element">
-    <div class="form-row">
-        <div class="form-group">
-            <label>First Name</label>
-            <input type="text" name="first_name" id="f_name" required placeholder="John">
-        </div>
-        <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" name="last_name" id="l_name" required placeholder="Peter">
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label>Your Email</label>
-        <input type="email" name="email" id="email_addr" required placeholder="contact@resonwave.com">
-        <div class="email-error" id="email-error"></div>
-        <div class="email-warning" id="email-warning"></div>
-    </div>
-
-    <div class="form-group">
-        <label>Phone Number</label>
-        <input type="tel" name="phone" id="phone_num" required placeholder="+971 ...">
-    </div>
-
-    <div class="form-group">
-        <label>Message (Max 1500 chars)</label>
-        <textarea name="message" id="msg_body" maxlength="1500" required placeholder="Describe your issue..."></textarea>
-    </div>
-
-    <button type="submit" class="btn-purple-box" id="submit-btn">Submit Ticket</button>
-    <p id="status-msg" style="margin-top: 10px; display: none; color: var(--brand-purple); font-weight: 600;">Sending...</p>
-</form>
-    </div>
-</div>
-</section>
-        
-    </div>
-</div>
-                       
+                        <div class="partner-row reverse">
+                            <div class="partner-img-box">
+                                <img src="Misgan.png" alt="Resonwave Technology Technical Support Professional">
+                            </div>
+                            <div class="partner-content">
+                                <h3>Dedicated after sales support</h3>
+                                <p>Our commitment extends beyond implementation. We provide comprehensive support to ensure your systems run smoothly and efficiently.</p>
+                                <section id="consultation-form" class="form-container">
+                                    <div class="form-container" id="support-form">
+                                        <div class="form-box">
+                                            <h3>Technical Support Request</h3>
+                                            <p>Your request will be sent to our engineering team for review.</p>
+                                            <form id="support-form-element">
+                                                <div class="form-row">
+                                                    <div class="form-group">
+                                                        <label>First Name</label>
+                                                        <input type="text" name="first_name" id="f_name" required placeholder="John">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Last Name</label>
+                                                        <input type="text" name="last_name" id="l_name" required placeholder="Peter">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Your Email</label>
+                                                    <input type="email" name="email" id="email_addr" required placeholder="contact@resonwave.com">
+                                                    <div class="email-error" id="email-error"></div>
+                                                    <div class="email-warning" id="email-warning"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Phone Number</label>
+                                                    <input type="tel" name="phone" id="phone_num" required placeholder="+971 ...">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Message (Max 1500 chars)</label>
+                                                    <textarea name="message" id="msg_body" maxlength="1500" required placeholder="Describe your issue..."></textarea>
+                                                </div>
+                                                <button type="submit" class="btn-purple-box" id="submit-btn">Submit Ticket</button>
+                                                <p id="status-msg" style="margin-top: 10px; display: none; color: var(--brand-purple); font-weight: 600;">Sending...</p>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
                     </div>
                 </section>
-            </div> 
-            <div class="scroll-item">
-                </div>
-
+            </div>
+            <!-- Duplicate content will be injected here by JavaScript (without IDs) -->
         </div>
     </div>
 
-    
-<script>
-    // ========== ENHANCED EMAIL VALIDATION (LOCAL PART + DOMAIN MX) ==========
-    const emailInput = document.getElementById("email_addr");
-    const emailError = document.getElementById("email-error");
-    const emailWarning = document.getElementById("email-warning");
+    <script>
+        // ========== ENHANCED EMAIL VALIDATION (LOCAL PART + DOMAIN MX) ==========
+        const emailInput = document.getElementById("email_addr");
+        const emailError = document.getElementById("email-error");
+        const emailWarning = document.getElementById("email-warning");
 
-    function clearEmailMessages() {
-        emailError.style.display = "none";
-        emailWarning.style.display = "none";
-        emailInput.style.borderColor = "#eee";
-    }
-
-    function showEmailError(message) {
-        emailError.textContent = message;
-        emailError.style.display = "block";
-        emailInput.style.borderColor = "#e74c3c";
-    }
-
-    function showEmailWarning(message) {
-        emailWarning.textContent = message;
-        emailWarning.style.display = "block";
-        emailInput.style.borderColor = "#f39c12";
-    }
-
-    // Extract local part and domain
-    function parseEmail(email) {
-        const parts = email.split('@');
-        if (parts.length !== 2) return { local: null, domain: null };
-        return { local: parts[0].toLowerCase(), domain: parts[1].toLowerCase() };
-    }
-
-    // Validate local part format
-    function validateLocalPart(local) {
-        if (!local || local.length === 0) {
-            return { valid: false, message: "Missing username before @." };
-        }
-        if (local.length < 2) {
-            return { valid: false, message: "Username is too short (at least 2 characters)." };
-        }
-        if (local.length > 64) {
-            return { valid: false, message: "Username is too long (max 64 characters)." };
-        }
-        if (local.startsWith('.') || local.endsWith('.')) {
-            return { valid: false, message: "Username cannot start or end with a dot." };
-        }
-        if (local.includes('..')) {
-            return { valid: false, message: "Username cannot contain consecutive dots." };
-        }
-        if (!/^[a-z0-9._-]+$/.test(local)) {
-            return { valid: false, message: "Username contains invalid characters. Only letters, numbers, dots, underscores, and hyphens are allowed." };
-        }
-        let warning = null;
-        if (/^\d+$/.test(local)) {
-            warning = "Username is all numbers – please double‑check it's correct.";
-        }
-        if (!local.includes('.') && local.length > 12 && /^[a-z]+$/.test(local)) {
-            warning = warning || "Username has no dot and is long – did you mean first.last?";
-        }
-        return { valid: true, message: null, warning: warning };
-    }
-
-    // Domain MX check using Google DNS API
-    async function domainHasMX(domain) {
-        try {
-            const url = `https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=MX`;
-            const response = await fetch(url);
-            const data = await response.json();
-            return data.Answer && data.Answer.some(record => record.type === 15);
-        } catch (err) {
-            console.warn("DNS check failed:", err);
-            return false;
-        }
-    }
-
-    // Common domain typos
-    const commonTypos = {
-        "gmil.com": "gmail.com", "hotmal.com": "hotmail.com", "yaho.com": "yahoo.com",
-        "outlok.com": "outlook.com", "protonmai.com": "protonmail.com", "gmai.com": "gmail.com",
-        "gmail.co": "gmail.com", "hotmial.com": "hotmail.com", "yahooo.com": "yahoo.com"
-    };
-
-    // Main validation function
-    async function validateFullEmail(email) {
-        clearEmailMessages();
-        if (!email || email.trim() === "") {
-            showEmailError("Email address is required.");
-            return false;
-        }
-
-        const { local, domain } = parseEmail(email);
-        if (!local || !domain) {
-            showEmailError("Please include an '@' symbol and a valid domain (e.g., name@example.com).");
-            return false;
-        }
-
-        // 1. Validate local part
-        const localCheck = validateLocalPart(local);
-        if (!localCheck.valid) {
-            showEmailError(localCheck.message);
-            return false;
-        }
-        if (localCheck.warning) {
-            showEmailWarning(localCheck.warning);
-        }
-
-        // 2. Check domain typos
-        if (commonTypos[domain]) {
-            showEmailError(`Did you mean @${commonTypos[domain]}?`);
-            return false;
-        }
-
-        // 3. Basic domain format
-        if (!domain.includes('.') || domain.split('.').pop().length < 2) {
-            showEmailError("Please enter a complete domain (e.g., @example.com).");
-            return false;
-        }
-
-        // 4. MX record check
-        emailWarning.textContent = "Checking domain...";
-        emailWarning.style.display = "block";
-        const hasMX = await domainHasMX(domain);
-        if (!hasMX) {
-            showEmailError("This domain does not appear to accept emails. Please use a working email address.");
+        function clearEmailMessages() {
+            emailError.style.display = "none";
             emailWarning.style.display = "none";
-            return false;
+            emailInput.style.borderColor = "#eee";
         }
 
-        clearEmailMessages();
-        return true;
-    }
-
-    // Real-time validation on blur
-    emailInput.addEventListener("blur", async function() {
-        if (emailInput.value.trim() === "") {
-            showEmailError("Email address is required.");
-            return;
-        }
-        await validateFullEmail(emailInput.value.trim());
-    });
-
-    // Clear errors when user starts typing
-    emailInput.addEventListener("input", function() {
-        clearEmailMessages();
-    });
-
-    // ========== FORM SUBMISSION WITH EMAIL CHECK ==========
-    const form = document.getElementById("support-form-element");
-    const statusMsg = document.getElementById("status-msg");
-
-    form.addEventListener("submit", async function(event) {
-        event.preventDefault();
-        
-        const email = emailInput.value.trim();
-        const isEmailValid = await validateFullEmail(email);
-        if (!isEmailValid) {
-            statusMsg.style.display = "block";
-            statusMsg.style.color = "red";
-            statusMsg.innerHTML = "Please correct the email address before submitting.";
-            return;
+        function showEmailError(message) {
+            emailError.textContent = message;
+            emailError.style.display = "block";
+            emailInput.style.borderColor = "#e74c3c";
         }
 
-        // If there's only a warning (not an error), we still allow submission after confirmation
-        if (emailWarning.style.display === "block") {
-            const proceed = confirm("Your email address has a possible typo. Continue anyway?");
-            if (!proceed) return;
+        function showEmailWarning(message) {
+            emailWarning.textContent = message;
+            emailWarning.style.display = "block";
+            emailInput.style.borderColor = "#f39c12";
         }
 
-        statusMsg.style.display = "block";
-        statusMsg.style.color = "#0F52BA";
-        statusMsg.innerHTML = "Processing Ticket...";
+        function parseEmail(email) {
+            const parts = email.split('@');
+            if (parts.length !== 2) return { local: null, domain: null };
+            return { local: parts[0].toLowerCase(), domain: parts[1].toLowerCase() };
+        }
 
-        const data = new FormData(form);
-        
-        fetch("https://formspree.io/f/xvzvaadq", {
-            method: "POST",
-            body: data,
-            headers: { 'Accept': 'application/json' }
-        }).then(response => {
-            if (response.ok) {
-                // Redirect to local thank-you page (change if needed)
-                window.location.href = "thank-you.html";
-            } else {
-                statusMsg.style.color = "red";
-                statusMsg.innerHTML = "Oops! Submission failed. Please try again.";
+        function validateLocalPart(local) {
+            if (!local || local.length === 0) {
+                return { valid: false, message: "Missing username before @." };
             }
-        }).catch(error => {
-            statusMsg.style.color = "red";
-            statusMsg.innerHTML = "Connection error. Please check your network.";
-        });
-    });
-</script>
+            if (local.length < 2) {
+                return { valid: false, message: "Username is too short (at least 2 characters)." };
+            }
+            if (local.length > 64) {
+                return { valid: false, message: "Username is too long (max 64 characters)." };
+            }
+            if (local.startsWith('.') || local.endsWith('.')) {
+                return { valid: false, message: "Username cannot start or end with a dot." };
+            }
+            if (local.includes('..')) {
+                return { valid: false, message: "Username cannot contain consecutive dots." };
+            }
+            if (!/^[a-z0-9._-]+$/.test(local)) {
+                return { valid: false, message: "Username contains invalid characters. Only letters, numbers, dots, underscores, and hyphens are allowed." };
+            }
+            let warning = null;
+            if (/^\d+$/.test(local)) {
+                warning = "Username is all numbers – please double‑check it's correct.";
+            }
+            if (!local.includes('.') && local.length > 12 && /^[a-z]+$/.test(local)) {
+                warning = warning || "Username has no dot and is long – did you mean first.last?";
+            }
+            return { valid: true, message: null, warning: warning };
+        }
 
-    
+        async function domainHasMX(domain) {
+            try {
+                const url = `https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=MX`;
+                const response = await fetch(url);
+                const data = await response.json();
+                return data.Answer && data.Answer.some(record => record.type === 15);
+            } catch (err) {
+                console.warn("DNS check failed:", err);
+                return false;
+            }
+        }
+
+        const commonTypos = {
+            "gmil.com": "gmail.com", "hotmal.com": "hotmail.com", "yaho.com": "yahoo.com",
+            "outlok.com": "outlook.com", "protonmai.com": "protonmail.com", "gmai.com": "gmail.com",
+            "gmail.co": "gmail.com", "hotmial.com": "hotmail.com", "yahooo.com": "yahoo.com"
+        };
+
+        async function validateFullEmail(email) {
+            clearEmailMessages();
+            if (!email || email.trim() === "") {
+                showEmailError("Email address is required.");
+                return false;
+            }
+
+            const { local, domain } = parseEmail(email);
+            if (!local || !domain) {
+                showEmailError("Please include an '@' symbol and a valid domain (e.g., name@example.com).");
+                return false;
+            }
+
+            const localCheck = validateLocalPart(local);
+            if (!localCheck.valid) {
+                showEmailError(localCheck.message);
+                return false;
+            }
+            if (localCheck.warning) {
+                showEmailWarning(localCheck.warning);
+            }
+
+            if (commonTypos[domain]) {
+                showEmailError(`Did you mean @${commonTypos[domain]}?`);
+                return false;
+            }
+
+            if (!domain.includes('.') || domain.split('.').pop().length < 2) {
+                showEmailError("Please enter a complete domain (e.g., @example.com).");
+                return false;
+            }
+
+            emailWarning.textContent = "Checking domain...";
+            emailWarning.style.display = "block";
+            const hasMX = await domainHasMX(domain);
+            if (!hasMX) {
+                showEmailError("This domain does not appear to accept emails. Please use a working email address.");
+                emailWarning.style.display = "none";
+                return false;
+            }
+
+            clearEmailMessages();
+            return true;
+        }
+
+        emailInput.addEventListener("blur", async function() {
+            if (emailInput.value.trim() === "") {
+                showEmailError("Email address is required.");
+                return;
+            }
+            await validateFullEmail(emailInput.value.trim());
+        });
+
+        emailInput.addEventListener("input", function() {
+            clearEmailMessages();
+        });
+
+        const form = document.getElementById("support-form-element");
+        const statusMsg = document.getElementById("status-msg");
+
+        form.addEventListener("submit", async function(event) {
+            event.preventDefault();
+            
+            const email = emailInput.value.trim();
+            const isEmailValid = await validateFullEmail(email);
+            if (!isEmailValid) {
+                statusMsg.style.display = "block";
+                statusMsg.style.color = "red";
+                statusMsg.innerHTML = "Please correct the email address before submitting.";
+                return;
+            }
+
+            if (emailWarning.style.display === "block") {
+                const proceed = confirm("Your email address has a possible typo. Continue anyway?");
+                if (!proceed) return;
+            }
+
+            statusMsg.style.display = "block";
+            statusMsg.style.color = "#0F52BA";
+            statusMsg.innerHTML = "Processing Ticket...";
+
+            const data = new FormData(form);
+            
+            fetch("https://formspree.io/f/xvzvaadq", {
+                method: "POST",
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = "thank-you.html";
+                } else {
+                    statusMsg.style.color = "red";
+                    statusMsg.innerHTML = "Oops! Submission failed. Please try again.";
+                }
+            }).catch(error => {
+                statusMsg.style.color = "red";
+                statusMsg.innerHTML = "Connection error. Please check your network.";
+            });
+        });
+
+        // ========== INFINITE SCROLL – CLONE CONTENT WITHOUT IDs ==========
+        function cloneWithoutIds(element) {
+            const clone = element.cloneNode(true);
+            // Remove all id attributes from the clone to avoid duplicates
+            const allElementsWithId = clone.querySelectorAll('[id]');
+            allElementsWithId.forEach(el => el.removeAttribute('id'));
+            // Also remove id from the root element if present
+            if (clone.id) clone.removeAttribute('id');
+            return clone;
+        }
+
+        const originalScrollItem = document.querySelector('.scroll-item');
+        if (originalScrollItem) {
+            const cloneItem = cloneWithoutIds(originalScrollItem);
+            const scrollContainer = document.getElementById('infiniteScroll');
+            scrollContainer.appendChild(cloneItem);
+        }
+    </script>
 </body>
 </html>
