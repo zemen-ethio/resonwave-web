@@ -74,8 +74,20 @@
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
         }
 
+        .header-brand-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-logo {
+            height: 42px;
+            width: auto;
+            border-radius: 4px;
+        }
+
         .exact-logo-text {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: #FFFFFF;
             letter-spacing: -0.3px;
@@ -128,7 +140,7 @@
             flex-direction: column;
         }
 
-        /* ----- SPLIT SCREEN & CONTACT BOX (SAPPHIRE BLUE + WHITE TEXT) ----- */
+        /* ----- SPLIT SCREEN & CONTACT BOX ----- */
         .split-screen {
             display: flex;
             flex-wrap: wrap;
@@ -148,10 +160,9 @@
             filter: drop-shadow(0 10px 15px rgba(0,0,0,0.05));
         }
 
-        /* CONTACT BOX : SAPPHIRE BLUE BACKGROUND + PURE WHITE TEXT */
         .contact-box {
             flex: 0.9;
-            background: #0F52BA;      /* Sapphire blue */
+            background: #0F52BA;
             padding: 2rem;
             border-radius: 32px;
             box-shadow: 0 25px 40px -12px rgba(0,0,0,0.2);
@@ -170,7 +181,7 @@
         .contact-box .box-label {
             font-weight: 700;
             margin: 1.2rem 0 0.3rem 0;
-            color: #FFE484;    /* soft gold accent for labels */
+            color: #FFE484;
             font-size: 1rem;
         }
         .contact-box a {
@@ -183,7 +194,6 @@
             color: #FFE484;
             border-bottom-color: #FFE484;
         }
-        /* Social circle inside sapphire box: white background with blue icon */
         .contact-box .social-circle {
             width: 44px;
             height: 44px;
@@ -203,11 +213,8 @@
             background: #FFE484;
             transform: scale(1.05);
         }
-        .contact-box .social-circle:hover i {
-            color: #0F52BA;
-        }
 
-        /* ----- rest of page styles (unchanged, consistent) ----- */
+        /* ----- SECTIONS ----- */
         .section {
             padding: 3rem 5%;
         }
@@ -250,7 +257,7 @@
         .btn-small {
             display: inline-block;
             margin-top: 1.3rem;
-            background: #6d28d9;
+            background: #0F52BA;
             color: white;
             padding: 10px 26px;
             border-radius: 40px;
@@ -259,7 +266,7 @@
             transition: 0.2s;
         }
         .btn-small:hover {
-            background: #4c1d95;
+            background: #0d47a1;
             transform: translateY(-2px);
         }
         .hero-blue-banner {
@@ -280,11 +287,11 @@
             padding: 10px 25px;
             border-radius: 40px;
             font-weight: 700;
-            color: #4c1d95;
+            color: #1e1b4b;
             cursor: pointer;
         }
         .purple-title {
-            color: #4c1d95;
+            color: #1e1b4b;
             font-size: 2.2rem;
             font-weight: 700;
         }
@@ -368,7 +375,7 @@
             font-family: inherit;
         }
         .btn-purple-box {
-            background: #7c3aed;
+            background: #0F52BA;
             border: none;
             padding: 12px 28px;
             color: white;
@@ -380,6 +387,7 @@
             font-size: 0.75rem;
             margin-top: 5px;
         }
+
         @media (max-width: 800px) {
             .checker-row, .partner-row {
                 flex-direction: column;
@@ -388,7 +396,10 @@
                 padding: 0 1rem;
             }
             .exact-logo-text {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
+            }
+            .header-logo {
+                height: 34px;
             }
             .exact-nav ul {
                 gap: 1rem;
@@ -399,7 +410,10 @@
 <body>
 
 <header class="exact-header">
-    <h1 class="exact-logo-text">Resonwave Technology</h1>
+    <div class="header-brand-container">
+        <img src="RW-img-logo.png" alt="Resonwave Logo" class="header-logo">
+        <h1 class="exact-logo-text">Resonwave Technology</h1>
+    </div>
     <nav class="exact-nav">
         <ul>
             <li><a href="#home" class="active">Home</a></li>
@@ -417,7 +431,6 @@
                 <div class="logo-box">
                     <img src="Resonwave Logo.webp" alt="Resonwave Technology Logo" class="rw-logo-img">
                 </div>
-                <!-- CONTACT BOX with "Social Media" heading and corrected LinkedIn icon -->
                 <div class="contact-box">
                     <h2>Contact Us</h2>
                     <p style="margin-bottom: 20px; font-weight: 500;"><i class="fas fa-map-marker-alt"></i> Dubai, UAE</p>
@@ -428,8 +441,7 @@
                     <p>+971 50 120 2709</p>
                     <h3 class="box-label">Opening Hours</h3>
                     <p>Mon - Fri: 9am - 5pm</p>
-                    <p>Saturday: 10am - 3pm</p>
-                    <p>Sunday: Closed</p>
+                    <p>Sat: 10am - 3pm | Sun: Closed</p>
                     <h3 class="box-label">Social Media</h3>
                     <a href="https://www.linkedin.com/company/resonwave/" target="_blank" class="social-link" aria-label="LinkedIn">
                         <div class="social-circle">
@@ -450,61 +462,40 @@
                             <a href="#services" class="btn-small">Explore our services</a>
                         </div>
                     </div>
-                    <div class="checker-row reverse">
-                        <div class="checker-image"><img src="Solving business inefficiencies with expert IT solutions.webp" alt="IT Solutions"></div>
-                        <div class="checker-text">
-                            <h3>Solving business inefficiencies with expert IT solutions</h3>
-                            <p>We partner with businesses in Dubai, UAE to navigate the challenges of modern technology. Our focus is on streamlining workflows.</p>
-                            <a href="#contact" class="btn-small">How we can help</a>
-                        </div>
-                    </div>
                 </div>
             </section>
 
             <section id="services" class="section">
                 <div class="hero-blue-banner">
                     <h1>Transforming your business with technology</h1>
-                    <p>Discover how Resonwave Technology in Dubai can elevate your business. We specialize in cutting-edge IT solutions designed to drive efficiency and innovation.</p>
+                    <p>Discover how Resonwave Technology in Dubai can elevate your business. We specialize in cutting-edge IT solutions designed to drive efficiency.</p>
                     <button class="btn-white-box">Learn more about us</button>
                 </div>
                 <div class="container">
                     <h2 class="purple-title text-center" style="margin-top:60px;">Our expert IT services</h2>
-                    <p class="text-center gray-subtext">At Resonwave Technology, we offer a specialized suite of services tailored to meet the evolving needs of modern businesses.</p>
                     <div class="services-grid">
-                        <div class="s-card"><img src="Business Automation.webp" alt="Automation"><h4>Business automation</h4><p>Streamline your operations and boost productivity with our advanced business automation solutions.</p></div>
-                        <div class="s-card"><img src="AI implementation.webp" alt="AI"><h4>AI implementation</h4><p>Harness the power of artificial intelligence to gain insights and enhance decision-making.</p></div>
-                        <div class="s-card"><img src="Research and development.webp" alt="R&D"><h4>Research and development</h4><p>Innovate and stay ahead with our dedicated research and development services.</p></div>
-                    </div>
-                    <h2 class="purple-title text-center" style="margin-top:100px;">Your partner in technological advancement</h2>
-                    <div class="partner-row">
-                        <div class="partner-img-box"><img src="partners.webp" alt="Partner"></div>
-                        <div class="partner-content"><h3>Uniquely Resonwave Technology</h3><p>What truly distinguishes Resonwave Technology in Dubai is our unwavering focus on emerging technologies and a commitment to continuous development.</p></div>
+                        <div class="s-card"><img src="Business Automation.webp" alt="Automation"><h4>Business automation</h4><p>Streamline your operations and boost productivity with our advanced solutions.</p></div>
+                        <div class="s-card"><img src="AI implementation.webp" alt="AI"><h4>AI implementation</h4><p>Harness the power of artificial intelligence to gain insights.</p></div>
+                        <div class="s-card"><img src="Research and development.webp" alt="R&D"><h4>Research and development</h4><p>Innovate and stay ahead with our dedicated research services.</p></div>
                     </div>
                     <div class="partner-row reverse">
-                        <div class="partner-img-box"><img src="Misgan.png" alt="Resonwave Technology Technical Support Professional"></div>
+                        <div class="partner-img-box"><img src="Misgan.png" alt="Resonwave Support"></div>
                         <div class="partner-content">
-                            <h3>Dedicated after sales support</h3>
-                            <p>Our commitment extends beyond implementation. We provide comprehensive support to ensure your systems run smoothly and efficiently.</p>
+                            <h3>Dedicated support</h3>
+                            <p>Our commitment extends beyond implementation. We provide support to ensure your systems run smoothly.</p>
                             <section id="consultation-form" class="form-container">
-                                <div class="form-container" id="support-form">
-                                    <div class="form-box">
-                                        <h3>Technical Support Request</h3>
-                                        <p>Your request will be sent to our engineering team for review.</p>
-                                        <form id="support-form-element">
-                                            <div class="form-row">
-                                                <div class="form-group"><label>First Name</label><input type="text" name="first_name" id="f_name" required placeholder="John"></div>
-                                                <div class="form-group"><label>Last Name</label><input type="text" name="last_name" id="l_name" required placeholder="Peter"></div>
-                                            </div>
-                                            <div class="form-group"><label>Your Email</label><input type="email" name="email" id="email_addr" required placeholder="contact@resonwave.com">
-                                                <div class="email-error" id="email-error"></div><div class="email-warning" id="email-warning"></div>
-                                            </div>
-                                            <div class="form-group"><label>Phone Number</label><input type="tel" name="phone" id="phone_num" required placeholder="+971 ..."></div>
-                                            <div class="form-group"><label>Message (Max 1500 chars)</label><textarea name="message" id="msg_body" maxlength="1500" required placeholder="Describe your issue..."></textarea></div>
-                                            <button type="submit" class="btn-purple-box" id="submit-btn">Submit Ticket</button>
-                                            <p id="status-msg" style="margin-top: 10px; display: none; color: #6d28d9; font-weight: 600;">Sending...</p>
-                                        </form>
+                                <form id="support-form-element">
+                                    <div class="form-row">
+                                        <div class="form-group"><label>First Name</label><input type="text" name="first_name" id="f_name" required></div>
+                                        <div class="form-group"><label>Last Name</label><input type="text" name="last_name" id="l_name" required></div>
                                     </div>
-                                </div>
+                                    <div class="form-group"><label>Your Email</label><input type="email" name="email" id="email_addr" required>
+                                        <div class="email-error" id="email-error"></div><div class="email-warning" id="email-warning"></div>
+                                    </div>
+                                    <div class="form-group"><label>Message</label><textarea name="message" id="msg_body" maxlength="1500" required></textarea></div>
+                                    <button type="submit" class="btn-purple-box">Submit Ticket</button>
+                                    <p id="status-msg" style="margin-top: 10px; display: none; color: #0F52BA; font-weight: 600;">Sending...</p>
+                                </form>
                             </section>
                         </div>
                     </div>
@@ -515,7 +506,7 @@
 </div>
 
 <script>
-    // ========== EMAIL VALIDATION (fully functional) ==========
+    // ========== EMAIL VALIDATION ==========
     (function() {
         const emailInput = document.getElementById("email_addr");
         const emailError = document.getElementById("email-error");
@@ -530,179 +521,57 @@
             if(emailError) { emailError.textContent = message; emailError.style.display = "block"; }
             if(emailInput) emailInput.style.borderColor = "#e74c3c";
         }
-        function showEmailWarning(message) {
-            if(emailWarning) { emailWarning.textContent = message; emailWarning.style.display = "block"; }
-            if(emailInput) emailInput.style.borderColor = "#f39c12";
-        }
-        function parseEmail(email) {
-            const parts = email.split('@');
-            if (parts.length !== 2) return { local: null, domain: null };
-            return { local: parts[0].toLowerCase(), domain: parts[1].toLowerCase() };
-        }
-        function validateLocalPart(local) {
-            if (!local || local.length === 0) return { valid: false, message: "Missing username before @." };
-            if (local.length < 2) return { valid: false, message: "Username is too short (at least 2 characters)." };
-            if (local.length > 64) return { valid: false, message: "Username is too long (max 64 characters)." };
-            if (local.startsWith('.') || local.endsWith('.')) return { valid: false, message: "Username cannot start or end with a dot." };
-            if (local.includes('..')) return { valid: false, message: "Username cannot contain consecutive dots." };
-            if (!/^[a-z0-9._-]+$/.test(local)) return { valid: false, message: "Username contains invalid characters." };
-            let warning = null;
-            if (/^\d+$/.test(local)) warning = "Username is all numbers – please double‑check it's correct.";
-            if (!local.includes('.') && local.length > 12 && /^[a-z]+$/.test(local)) warning = warning || "Username has no dot and is long – did you mean first.last?";
-            return { valid: true, message: null, warning: warning };
-        }
-        async function domainHasMX(domain) {
-            try {
-                const url = `https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=MX`;
-                const response = await fetch(url);
-                const data = await response.json();
-                return data.Answer && data.Answer.some(record => record.type === 15);
-            } catch (err) { return false; }
-        }
-        const commonTypos = { "gmil.com": "gmail.com", "hotmal.com": "hotmail.com", "yaho.com": "yahoo.com", "outlok.com": "outlook.com", "gmai.com": "gmail.com", "gmail.co": "gmail.com" };
         async function validateFullEmail(email) {
             clearEmailMessages();
-            if (!email || email.trim() === "") { showEmailError("Email address is required."); return false; }
-            const { local, domain } = parseEmail(email);
-            if (!local || !domain) { showEmailError("Please include an '@' symbol and a valid domain."); return false; }
-            const localCheck = validateLocalPart(local);
-            if (!localCheck.valid) { showEmailError(localCheck.message); return false; }
-            if (localCheck.warning) showEmailWarning(localCheck.warning);
-            if (commonTypos[domain]) { showEmailError(`Did you mean @${commonTypos[domain]}?`); return false; }
-            if (!domain.includes('.') || domain.split('.').pop().length < 2) { showEmailError("Please enter a complete domain."); return false; }
-            if(emailWarning) emailWarning.textContent = "Checking domain...";
-            if(emailWarning) emailWarning.style.display = "block";
-            const hasMX = await domainHasMX(domain);
-            if (!hasMX) { showEmailError("This domain does not appear to accept emails. Please use a working email address."); if(emailWarning) emailWarning.style.display = "none"; return false; }
-            clearEmailMessages();
+            if (!email || email.trim() === "") return false;
+            const parts = email.split('@');
+            if (parts.length !== 2) { showEmailError("Invalid email format."); return false; }
             return true;
         }
         if(emailInput) {
-            emailInput.addEventListener("blur", async function() { if(emailInput.value.trim() === "") showEmailError("Email address is required."); else await validateFullEmail(emailInput.value.trim()); });
+            emailInput.addEventListener("blur", async function() { await validateFullEmail(emailInput.value.trim()); });
             emailInput.addEventListener("input", function() { clearEmailMessages(); });
         }
         const form = document.getElementById("support-form-element");
-        const statusMsg = document.getElementById("status-msg");
         if(form) {
             form.addEventListener("submit", async function(event) {
                 event.preventDefault();
-                const email = emailInput ? emailInput.value.trim() : "";
-                const isEmailValid = await validateFullEmail(email);
-                if (!isEmailValid) {
-                    if(statusMsg) { statusMsg.style.display = "block"; statusMsg.style.color = "red"; statusMsg.innerHTML = "Please correct the email address before submitting."; }
-                    return;
-                }
-                if(emailWarning && emailWarning.style.display === "block") {
-                    const proceed = confirm("Your email address has a possible typo. Continue anyway?");
-                    if (!proceed) return;
-                }
-                if(statusMsg) { statusMsg.style.display = "block"; statusMsg.style.color = "#0F52BA"; statusMsg.innerHTML = "Processing Ticket..."; }
+                document.getElementById("status-msg").style.display = "block";
                 const data = new FormData(form);
                 fetch("https://formspree.io/f/xvzvaadq", { method: "POST", body: data, headers: { 'Accept': 'application/json' } })
-                .then(response => { if (response.ok) window.location.href = "thank-you.html"; else { if(statusMsg) { statusMsg.style.color = "red"; statusMsg.innerHTML = "Oops! Submission failed."; } } })
-                .catch(() => { if(statusMsg) { statusMsg.style.color = "red"; statusMsg.innerHTML = "Connection error."; } });
+                .then(response => { if (response.ok) window.location.href = "thank-you.html"; else alert("Failed."); })
+                .catch(() => alert("Error."));
             });
         }
     })();
 
-    // ========== INFINITE SCROLL (top to bottom, stops on hover, mouse takeover) ==========
+    // ========== INFINITE SCROLL ==========
     (function() {
         const wrapper = document.getElementById('infiniteWrapper');
         const scrollContainer = document.getElementById('infiniteScroll');
         const originalBlock = document.getElementById('originalContentBlock');
         if (!wrapper || !scrollContainer || !originalBlock) return;
 
-        function cloneClean(node) {
-            const clone = node.cloneNode(true);
-            const allIds = clone.querySelectorAll('[id]');
-            allIds.forEach(el => el.removeAttribute('id'));
-            if (clone.id) clone.removeAttribute('id');
-            return clone;
-        }
-
-        const cloneBlock = cloneClean(originalBlock);
+        const cloneBlock = originalBlock.cloneNode(true);
+        cloneBlock.removeAttribute('id');
         scrollContainer.appendChild(cloneBlock);
 
-        let originalHeight = originalBlock.offsetHeight;
-        let totalHeight = scrollContainer.scrollHeight;
-        let autoScrollActive = true;
-        let animationFrameId = null;
-        let isHovering = false;
         const SCROLL_SPEED = 1.2;
+        let isHovering = false;
 
-        function updateDimensions() {
-            originalHeight = originalBlock.offsetHeight;
-            totalHeight = scrollContainer.scrollHeight;
-        }
-        window.addEventListener('resize', () => {
-            updateDimensions();
-            enforceBoundaryCorrection();
-        });
-
-        function enforceBoundaryCorrection() {
-            if (!wrapper) return;
-            const st = wrapper.scrollTop;
-            const clientH = wrapper.clientHeight;
-            if (totalHeight <= 0) return;
-            if (st <= 0) {
-                wrapper.scrollTop = originalHeight;
-                return;
+        function step() {
+            if (!isHovering) {
+                wrapper.scrollTop += SCROLL_SPEED;
+                if (wrapper.scrollTop >= originalBlock.offsetHeight) {
+                    wrapper.scrollTop -= originalBlock.offsetHeight;
+                }
             }
-            if (st + clientH >= totalHeight - 2) {
-                const newTop = st - originalHeight;
-                if (newTop >= 0) wrapper.scrollTop = newTop;
-                else wrapper.scrollTop = originalHeight / 2;
-                return;
-            }
+            requestAnimationFrame(step);
         }
 
-        function refreshTotalHeight() {
-            totalHeight = scrollContainer.scrollHeight;
-            originalHeight = originalBlock.offsetHeight;
-        }
-
-        function stepAutoScroll() {
-            if (!autoScrollActive || isHovering) {
-                if (animationFrameId) cancelAnimationFrame(animationFrameId);
-                animationFrameId = null;
-                return;
-            }
-            if (!wrapper) return;
-            wrapper.scrollTop += SCROLL_SPEED;
-            enforceBoundaryCorrection();
-            refreshTotalHeight();
-            animationFrameId = requestAnimationFrame(stepAutoScroll);
-        }
-
-        function startAutoScroll() {
-            if (animationFrameId) cancelAnimationFrame(animationFrameId);
-            autoScrollActive = true;
-            if (!isHovering) animationFrameId = requestAnimationFrame(stepAutoScroll);
-        }
-
-        function stopAutoScroll() {
-            autoScrollActive = false;
-            if (animationFrameId) cancelAnimationFrame(animationFrameId);
-            animationFrameId = null;
-        }
-
-        function onMouseEnter() { isHovering = true; stopAutoScroll(); }
-        function onMouseLeave() { isHovering = false; startAutoScroll(); }
-        function onScrollHandler() { enforceBoundaryCorrection(); refreshTotalHeight(); }
-
-        wrapper.addEventListener('mouseenter', onMouseEnter);
-        wrapper.addEventListener('mouseleave', onMouseLeave);
-        wrapper.addEventListener('scroll', onScrollHandler);
-
-        window.addEventListener('load', () => {
-            updateDimensions();
-            enforceBoundaryCorrection();
-            startAutoScroll();
-        });
-        const resizeObserver = new ResizeObserver(() => { updateDimensions(); enforceBoundaryCorrection(); });
-        resizeObserver.observe(scrollContainer);
-        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => { updateDimensions(); startAutoScroll(); });
-        else { updateDimensions(); startAutoScroll(); }
+        wrapper.addEventListener('mouseenter', () => isHovering = true);
+        wrapper.addEventListener('mouseleave', () => isHovering = false);
+        window.addEventListener('load', step);
     })();
 </script>
 </body>
