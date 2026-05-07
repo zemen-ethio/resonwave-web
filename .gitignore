@@ -45,3 +45,9 @@ yarn-error.log*
 *.ai
 notes.txt
 todo.md
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
